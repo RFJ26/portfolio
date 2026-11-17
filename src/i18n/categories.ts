@@ -8,4 +8,10 @@ export const categoryLabels: Record<Lang, Record<Category, string>> = {
     academico: 'Académico',
     pessoal: 'Pessoal',
   },
+  en: {
+    'comercio-local': 'Local business',
+    profissional: 'Professional',
+    academico: 'Academic',
+    pessoal: 'Personal',
+  },
 };

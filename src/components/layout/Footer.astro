@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
   <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
     <div>
       <p class="font-display font-bold text-ink">{site.fullName}<span class="text-accent">.</span></p>
-      <p class="text-sm text-muted">{site.role} · {t('footer.location')}</p>
+      <p class="text-sm text-muted">{t('site.role')} · {t('footer.location')}</p>
     </div>
     <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
       <li><a class="text-muted hover:text-accent" href={`mailto:${site.email}`}>{site.email}</a></li>

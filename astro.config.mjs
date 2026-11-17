@@ -10,6 +10,11 @@ const SITE_URL = process.env.SITE_URL ?? 'https://romeu-portfolio.vercel.app';
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: 'always',
+  i18n: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+    routing: { prefixDefaultLocale: false },
+  },
   env: {
     schema: {
       // ID do formulário Formspree (a parte final de https://formspree.io/f/<ID>).

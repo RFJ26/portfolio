@@ -39,6 +39,35 @@ const copy: Record<Lang, { title: string; description: string; eyebrow: string; 
       privacyNote: 'Enviado através do Formspree.',
     },
   },
+  en: {
+    title: 'Contact',
+    description: 'Ask for a quote for your website or get in touch about an opportunity.',
+    eyebrow: 'Contact',
+    intro: 'Need a website for your business, want to improve the one you have, or have a job opportunity? Drop me a line.',
+    direct: 'Prefer email?',
+    based: 'Based in the Algarve, Portugal. Available for remote work.',
+    response: 'I usually reply within one working day.',
+    form: {
+      name: 'Name',
+      email: 'Email',
+      type: 'Subject',
+      typeOptions: ['New website', 'Improve an existing website', 'Maintenance', 'Job opportunity', 'Other'],
+      message: 'Message',
+      consent: 'I agree that the data in this form is used only to reply to my request.',
+      submit: 'Send message',
+      sending: 'Sending…',
+      success: 'Thank you! Your message was sent and I will reply soon.',
+      error: 'The message could not be sent. Please try again or write directly to the email address shown.',
+      notConfigured: 'Form not configured yet: set the PUBLIC_FORMSPREE_ID variable. In the meantime, please use email.',
+      errors: {
+        required: 'This field is required.',
+        email: 'Enter a valid email, for example name@domain.com.',
+        minMessage: 'Write at least 20 characters.',
+        consent: 'Please accept so I can reply.',
+      },
+      privacyNote: 'Sent via Formspree.',
+    },
+  },
 };
 const c = copy[lang];
 ---

@@ -32,6 +32,24 @@ const copy = {
     ctaText: 'Conte-me o que precisa. Respondo normalmente em 24 horas.',
     cta: 'Pedir orçamento',
   },
+  en: {
+    description: 'Junior web developer in the Algarve, Portugal. I build fast, accessible websites for local businesses and work at a software company.',
+    eyebrow: 'Available for new projects in the Algarve',
+    title: 'Fast, clear websites for <span class="text-accent">local businesses</span>.',
+    intro: "I'm Romeu, a junior developer at a software company and a student of Information Systems and Technologies (CTeSP) at the University of the Algarve. In my spare time I build websites for local businesses.",
+    primary: 'See projects',
+    secondary: 'Get in touch',
+    featuredEyebrow: 'Recent work',
+    featuredTitle: 'Featured projects',
+    featuredIntro: 'A selection of websites and apps I built for clients, for work and to learn.',
+    featuredAll: 'See all',
+    servicesEyebrow: 'Services',
+    servicesTitle: 'How I can help',
+    servicesIntro: 'From your first website to day-to-day maintenance, with a focus on performance, accessibility and simplicity.',
+    ctaTitle: 'Have a project in mind?',
+    ctaText: 'Tell me what you need. I usually reply within 24 hours.',
+    cta: 'Ask for a quote',
+  },
 }[lang];
 ---
 <BaseLayout lang={lang} description={copy.description} type="profile" jsonLd={personJsonLd(Astro.site!, lang, copy.description)}>

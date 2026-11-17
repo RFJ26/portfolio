@@ -10,12 +10,12 @@ import Gallery from '../components/projects/Gallery.astro';
 import { getProjects, techSlug, type Project } from '../lib/projects';
 import { categoryLabels } from '../i18n/categories';
 import { localizePath } from '../i18n/utils';
-import type { Lang } from '../i18n/ui';
+import { locales, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang; project: Project }
 const { lang, project } = Astro.props;
 const { title, summary, stack, category, repoUrl, liveUrl, cover, coverAlt, gallery, date } = project.data;
-const { Content } = await render(project);
+const { Content } = await render(project.entry);
 
 const copy = {
   pt: {
@@ -28,11 +28,23 @@ const copy = {
     gallery: { title: 'Galeria', open: 'Ampliar imagem', close: 'Fechar', prev: 'Imagem anterior', next: 'Imagem seguinte' },
     prev: 'Projeto anterior',
     next: 'Projeto seguinte',
-    locale: 'pt-PT',
+    fallback: '',
+  },
+  en: {
+    back: 'All projects',
+    date: 'Date',
+    category: 'Category',
+    stack: 'Technologies',
+    repo: 'Code on GitHub',
+    live: 'Live demo',
+    gallery: { title: 'Gallery', open: 'Enlarge image', close: 'Close', prev: 'Previous image', next: 'Next image' },
+    prev: 'Previous project',
+    next: 'Next project',
+    fallback: 'This project has not been translated yet, so the description below is in Portuguese.',
   },
 }[lang];
 
-const all = await getProjects();
+const all = await getProjects(lang);
 const idx = all.findIndex((p) => p.id === project.id);
 const newer = idx > 0 ? all[idx - 1] : undefined;
 const older = idx < all.length - 1 ? all[idx + 1] : undefined;
@@ -48,7 +60,7 @@ const jsonLd = projectJsonLd({
   siteUrl: Astro.site!,
   lang,
 });
-const formattedDate =new Intl.DateTimeFormat(copy.locale, { month: 'long', year: 'numeric' }).format(date);
+const formattedDate =new Intl.DateTimeFormat(locales[lang].intl, { month: 'long', year: 'numeric' }).format(date);
 ---
 <BaseLayout lang={lang} title={title} description={summary} type="article" image={ogImage.src} imageAlt={coverAlt} jsonLd={jsonLd}>
   <Container as="article" class="py-12 sm:py-16">
@@ -90,7 +102,10 @@ const formattedDate =new Intl.DateTimeFormat(copy.locale, { month: 'long', year:
 
     <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_280px]">
       <div class="min-w-0">
-        <div class="prose-project"><Content /></div>
+        {project.isFallback && (
+          <p class="mb-6 rounded-xl border border-dashed border-border p-4 text-sm text-muted">{copy.fallback}</p>
+        )}
+        <div class="prose-project" lang={project.isFallback ? 'pt-PT' : undefined}><Content /></div>
         <Gallery images={gallery} labels={copy.gallery} />
       </div>
 

@@ -20,9 +20,16 @@ const copy = {
     intro: 'Sites para negócios do Algarve, ferramentas internas e projetos para aprender. Filtra por tecnologia para encontrar o que procuras.',
     filter: { group: 'Filtrar por tecnologia', all: 'Todas', count: '{n} projetos', countOne: '1 projeto', empty: 'Nenhum projeto usa esta tecnologia.' },
   },
+  en: {
+    title: 'Projects',
+    description: 'Websites for local businesses plus professional, academic and personal projects. Filter by technology.',
+    eyebrow: 'Portfolio',
+    intro: 'Websites for businesses in the Algarve, internal tools and learning projects. Filter by technology to find what you are looking for.',
+    filter: { group: 'Filter by technology', all: 'All', count: '{n} projects', countOne: '1 project', empty: 'No project uses this technology.' },
+  },
 }[lang];
 
-const projects = await getProjects();
+const projects = await getProjects(lang);
 const techs = getTechnologies(projects);
 ---
 <BaseLayout lang={lang} title={copy.title} description={copy.description}>

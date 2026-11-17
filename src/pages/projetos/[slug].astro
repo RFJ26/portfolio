@@ -4,7 +4,7 @@ import ProjectView from '../../views/ProjectView.astro';
 import { getProjects, type Project } from '../../lib/projects';
 
 export const getStaticPaths = (async () => {
-  const projects = await getProjects();
+  const projects = await getProjects('pt');
   return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
 }) satisfies GetStaticPaths;
 

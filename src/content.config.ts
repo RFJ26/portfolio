@@ -23,4 +23,18 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { projects };
+/**
+ * Traduções para inglês: um ficheiro com o mesmo nome em projects/en/.
+ * Só os textos são traduzidos; stack, imagens, links e datas vêm do ficheiro português.
+ */
+const projectsEn = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/projects/en' }),
+  schema: z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1).max(220),
+    coverAlt: z.string().optional(),
+    galleryAlts: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { projects, projectsEn };

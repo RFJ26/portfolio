@@ -10,7 +10,7 @@ import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; eyebrow: string; title: string; intro: string; all: string }
 const { lang, eyebrow, title, intro, all } = Astro.props;
-const featured = await getFeaturedProjects(3);
+const featured = await getFeaturedProjects(lang, 3);
 ---
 <section class="border-y border-border bg-surface/60 py-20">
   <Container>
