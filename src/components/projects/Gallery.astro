@@ -1,0 +1,93 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  images: { src: ImageMetadata; alt: string }[];
+  labels: { title: string; open: string; close: string; prev: string; next: string };
+}
+const { images, labels } = Astro.props;
+// Versão grande de cada imagem para o lightbox.
+const large = await Promise.all(images.map((img) => getImage({ src: img.src, width: 1600, format: 'webp' })));
+---
+{images.length > 0 && (
+  <section aria-labelledby="galeria-titulo" class="mt-14" data-gallery>
+    <h2 id="galeria-titulo" class="text-2xl font-bold">{labels.title}</h2>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {images.map((img, i) => (
+        <li>
+          <a
+            href={large[i].src}
+            data-index={i}
+            data-alt={img.alt}
+            class="group block overflow-hidden rounded-2xl border border-border bg-accent-soft"
+            aria-label={`${labels.open}: ${img.alt}`}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              widths={[480, 720, 960]}
+              sizes="(min-width: 768px) 520px, 100vw"
+              class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <dialog
+      class="m-auto w-[min(92vw,1100px)] max-h-[92vh] rounded-2xl bg-surface p-0 text-ink backdrop:bg-black/80"
+      aria-label={labels.title}
+      data-lightbox
+    >
+      <figure class="relative">
+        <img src="" alt="" class="max-h-[80vh] w-full object-contain" data-lightbox-img />
+        <figcaption class="flex items-center justify-between gap-3 border-t border-border px-4 py-3 text-sm">
+          <span data-lightbox-caption class="text-muted"></span>
+          <span class="flex shrink-0 gap-1">
+            <button type="button" data-lightbox-prev aria-label={labels.prev} class="size-10 cursor-pointer rounded-full hover:bg-accent-soft">←</button>
+            <button type="button" data-lightbox-next aria-label={labels.next} class="size-10 cursor-pointer rounded-full hover:bg-accent-soft">→</button>
+            <button type="button" data-lightbox-close aria-label={labels.close} class="size-10 cursor-pointer rounded-full hover:bg-accent-soft">✕</button>
+          </span>
+        </figcaption>
+      </figure>
+    </dialog>
+  </section>
+)}
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-gallery]');
+  const dialog = root?.querySelector<HTMLDialogElement>('[data-lightbox]');
+  if (root && dialog) {
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('a[data-index]')];
+    const img = dialog.querySelector<HTMLImageElement>('[data-lightbox-img]')!;
+    const caption = dialog.querySelector<HTMLElement>('[data-lightbox-caption]')!;
+    let current = 0;
+
+    const show = (i: number) => {
+      current = (i + links.length) % links.length;
+      const link = links[current];
+      img.src = link.href;
+      img.alt = link.dataset.alt ?? '';
+      caption.textContent = `${current + 1}/${links.length} · ${link.dataset.alt ?? ''}`;
+    };
+
+    links.forEach((link, i) =>
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        show(i);
+        dialog.showModal();
+      }),
+    );
+    dialog.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(current - 1));
+    dialog.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(current + 1));
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+    // Fechar ao clicar fora da imagem
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => links[current]?.focus());
+  }
+</script>

@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Tag from '../components/ui/Tag.astro';
+import Gallery from '../components/projects/Gallery.astro';
+import { getProjects, techSlug, type Project } from '../lib/projects';
+import { categoryLabels } from '../i18n/categories';
+import { localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; project: Project }
+const { lang, project } = Astro.props;
+const { title, summary, stack, category, repoUrl, liveUrl, cover, coverAlt, gallery, date } = project.data;
+const { Content } = await render(project);
+
+const copy = {
+  pt: {
+    back: 'Todos os projetos',
+    date: 'Data',
+    category: 'Categoria',
+    stack: 'Tecnologias',
+    repo: 'Código no GitHub',
+    live: 'Ver demo',
+    gallery: { title: 'Galeria', open: 'Ampliar imagem', close: 'Fechar', prev: 'Imagem anterior', next: 'Imagem seguinte' },
+    prev: 'Projeto anterior',
+    next: 'Projeto seguinte',
+    locale: 'pt-PT',
+  },
+}[lang];
+
+const all = await getProjects();
+const idx = all.findIndex((p) => p.id === project.id);
+const newer = idx > 0 ? all[idx - 1] : undefined;
+const older = idx < all.length - 1 ? all[idx + 1] : undefined;
+const p = (path: string) => localizePath(lang, path);
+const formattedDate = new Intl.DateTimeFormat(copy.locale, { month: 'long', year: 'numeric' }).format(date);
+---
+<BaseLayout lang={lang} title={title} description={summary}>
+  <Container as="article" class="py-12 sm:py-16">
+    <a href={p('/projetos/')} class="inline-flex items-center gap-1 text-sm text-muted no-underline hover:text-accent">← {copy.back}</a>
+
+    <header class="mt-6 max-w-3xl">
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-accent">{categoryLabels[lang][category]}</p>
+      <h1 class="mt-2 text-4xl font-extrabold sm:text-5xl">{title}</h1>
+      <p class="mt-4 text-lg text-muted sm:text-xl">{summary}</p>
+      {(repoUrl || liveUrl) && (
+        <div class="mt-7 flex flex-wrap gap-3">
+          {liveUrl && (
+            <Button href={liveUrl} external>
+              {copy.live}
+              <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+            </Button>
+          )}
+          {repoUrl && (
+            <Button href={repoUrl} external variant="secondary">
+              <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z" /></svg>
+              {copy.repo}
+            </Button>
+          )}
+        </div>
+      )}
+    </header>
+
+    <div class="mt-10 overflow-hidden rounded-3xl border border-border bg-accent-soft">
+      <Image
+        src={cover}
+        alt={coverAlt ?? ''}
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1152px) 1104px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="aspect-[16/10] w-full object-cover"
+      />
+    </div>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_280px]">
+      <div class="min-w-0">
+        <div class="prose-project"><Content /></div>
+        <Gallery images={gallery} labels={copy.gallery} />
+      </div>
+
+      <aside class="lg:order-last">
+        <dl class="space-y-6 rounded-2xl border border-border bg-surface p-6 lg:sticky lg:top-24">
+          <div>
+            <dt class="font-mono text-xs uppercase tracking-wider text-muted">{copy.date}</dt>
+            <dd class="mt-1 font-medium first-letter:uppercase"><time datetime={date.toISOString().slice(0, 10)}>{formattedDate}</time></dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs uppercase tracking-wider text-muted">{copy.category}</dt>
+            <dd class="mt-1 font-medium">{categoryLabels[lang][category]}</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs uppercase tracking-wider text-muted">{copy.stack}</dt>
+            <dd class="mt-2">
+              <ul class="flex flex-wrap gap-1.5">
+                {stack.map((tech) => (
+                  <li>
+                    <a href={p(`/projetos/?tech=${techSlug(tech)}`)} class="no-underline">
+                      <Tag class="hover:bg-accent hover:text-on-accent transition-colors">{tech}</Tag>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <nav aria-label={`${copy.prev} / ${copy.next}`} class="mt-16 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
+      {older ? (
+        <a href={p(`/projetos/${older.id}/`)} class="rounded-2xl border border-border p-5 no-underline hover:border-accent">
+          <span class="text-sm text-muted">← {copy.prev}</span>
+          <span class="mt-1 block font-display font-bold text-ink">{older.data.title}</span>
+        </a>
+      ) : <span />}
+      {newer && (
+        <a href={p(`/projetos/${newer.id}/`)} class="rounded-2xl border border-border p-5 text-right no-underline hover:border-accent">
+          <span class="text-sm text-muted">{copy.next} →</span>
+          <span class="mt-1 block font-display font-bold text-ink">{newer.data.title}</span>
+        </a>
+      )}
+    </nav>
+  </Container>
+</BaseLayout>
