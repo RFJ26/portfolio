@@ -22,7 +22,7 @@ export const ui = {
     'lang.switch': 'Read in English',
     'footer.rights': 'Feito com Astro e Tailwind CSS.',
     'footer.location': 'Algarve, Portugal',
-    'site.role': 'Programador web júnior',
+    'site.role': 'Programador web',
   },
   en: {
     'skip': 'Skip to content',
@@ -36,7 +36,7 @@ export const ui = {
     'lang.switch': 'Ler em português',
     'footer.rights': 'Built with Astro and Tailwind CSS.',
     'footer.location': 'Algarve, Portugal',
-    'site.role': 'Junior web developer',
+    'site.role': 'Web developer',
   },
 } as const;
 

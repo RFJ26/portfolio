@@ -1,39 +1,50 @@
 @import "tailwindcss";
 
-/* O tema escuro é controlado pelo atributo data-theme no <html>. */
+/* O tema é controlado pelo atributo data-theme no <html> (escuro por defeito). */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --c-bg: #faf8f5;
+  --c-bg: #f6f7f9;
   --c-surface: #ffffff;
-  --c-ink: #1a1d21;
-  --c-muted: #5b6168;
-  --c-border: #e5e1da;
-  --c-accent: #b4532a;
+  --c-surface-2: #eef0f3;
+  --c-ink: #0e1116;
+  --c-muted: #555e6b;
+  --c-border: #dde1e7;
+  --c-accent: #b4532a;        /* terracota das falésias */
   --c-accent-hover: #9a4423;
-  --c-accent-soft: #f6e6dd;
+  --c-accent-soft: #f7e7de;
   --c-on-accent: #ffffff;
-  --c-sea: #1f5f7a;
+  --c-sea: #0e7490;           /* azul-turquesa do Atlântico */
+  --c-sea-soft: #e0f2f6;
+  --c-grid: rgb(14 17 22 / 0.05);
+  --c-glow-1: rgb(180 83 42 / 0.12);
+  --c-glow-2: rgb(14 116 144 / 0.10);
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --c-bg: #111315;
-  --c-surface: #1a1d20;
-  --c-ink: #eceae6;
-  --c-muted: #a1a6ac;
-  --c-border: #2a2e33;
-  --c-accent: #e07a4f;
-  --c-accent-hover: #ea946f;
-  --c-accent-soft: #3a2419;
-  --c-on-accent: #111315;
-  --c-sea: #6fb3c9;
+  --c-bg: #0a0c10;
+  --c-surface: #11151b;
+  --c-surface-2: #171c24;
+  --c-ink: #e8eaee;
+  --c-muted: #9aa3b0;
+  --c-border: #222935;
+  --c-accent: #f08a5d;
+  --c-accent-hover: #f6a27c;
+  --c-accent-soft: #2a1a13;
+  --c-on-accent: #0a0c10;
+  --c-sea: #5fd0e0;
+  --c-sea-soft: #0f2a30;
+  --c-grid: rgb(232 234 238 / 0.045);
+  --c-glow-1: rgb(240 138 93 / 0.16);
+  --c-glow-2: rgb(95 208 224 / 0.12);
   color-scheme: dark;
 }
 
 @theme inline {
   --color-bg: var(--c-bg);
   --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
   --color-ink: var(--c-ink);
   --color-muted: var(--c-muted);
   --color-border: var(--c-border);
@@ -42,9 +53,10 @@
   --color-accent-soft: var(--c-accent-soft);
   --color-on-accent: var(--c-on-accent);
   --color-sea: var(--c-sea);
+  --color-sea-soft: var(--c-sea-soft);
 
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -64,40 +76,87 @@
 
   h1, h2, h3, h4 {
     @apply font-display text-ink;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
     text-wrap: balance;
   }
 
   p { text-wrap: pretty; }
-
   a { @apply underline-offset-4; }
 
   :focus-visible {
-    outline: 2px solid var(--c-accent);
+    outline: 2px solid var(--c-sea);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   ::selection {
-    background: var(--c-accent-soft);
-    color: var(--c-ink);
+    background: var(--c-accent);
+    color: var(--c-on-accent);
   }
 }
 
 @layer components {
+  /* Grelha de fundo subtil, que desvanece nas extremidades. */
+  .bg-grid {
+    background-image:
+      linear-gradient(var(--c-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--c-grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  /* Brilho difuso terracota + turquesa: o pôr do sol sobre o Atlântico. */
+  .bg-glow {
+    background:
+      radial-gradient(40rem 24rem at 15% 10%, var(--c-glow-1), transparent 70%),
+      radial-gradient(36rem 22rem at 85% 30%, var(--c-glow-2), transparent 70%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, var(--c-accent) 10%, var(--c-sea) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Cartão com contorno em gradiente ao passar o rato. */
+  .card {
+    @apply relative rounded-2xl border border-border bg-surface transition-[border-color,transform,box-shadow] duration-300;
+  }
+  .card:hover {
+    border-color: color-mix(in oklab, var(--c-accent) 55%, var(--c-border));
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--c-accent) 20%, transparent), 0 18px 40px -24px var(--c-glow-1);
+    transform: translateY(-2px);
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs font-medium tracking-[0.08em] text-sea;
+  }
+
   .prose-project {
     @apply max-w-[68ch] text-ink;
   }
-  .prose-project h2 { @apply mt-10 mb-3 text-2xl font-bold; }
+  .prose-project h2 {
+    @apply mt-10 mb-3 text-2xl font-bold;
+  }
+  .prose-project h2::before {
+    content: "## ";
+    @apply font-mono text-base font-medium text-accent;
+  }
   .prose-project h3 { @apply mt-8 mb-2 text-xl font-semibold; }
-  .prose-project p { @apply my-4; }
-  .prose-project ul { @apply my-4 list-disc pl-6 space-y-1; }
+  .prose-project p { @apply my-4 text-ink/90; }
+  .prose-project ul { @apply my-4 space-y-2 pl-0; }
+  .prose-project ul > li { @apply relative pl-6; }
+  .prose-project ul > li::before {
+    content: "→";
+    @apply absolute left-0 font-mono text-sea;
+  }
   .prose-project ol { @apply my-4 list-decimal pl-6 space-y-1; }
   .prose-project a { @apply text-accent underline hover:text-accent-hover; }
-  .prose-project strong { @apply font-semibold; }
+  .prose-project strong { @apply font-semibold text-ink; }
   .prose-project code {
-    @apply font-mono text-[0.9em] bg-accent-soft rounded px-1.5 py-0.5;
+    @apply font-mono text-[0.88em] bg-surface-2 border border-border rounded px-1.5 py-0.5;
   }
 }
 
@@ -107,4 +166,5 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .card:hover { transform: none; }
 }

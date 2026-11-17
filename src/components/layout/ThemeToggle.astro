@@ -7,7 +7,7 @@ const { label } = Astro.props;
   data-theme-toggle
   aria-label={label}
   title={label}
-  class="inline-flex size-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-accent-soft hover:text-ink cursor-pointer"
+  class="inline-flex size-10 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface-2 hover:text-ink cursor-pointer"
 >
   <!-- Sol (visível no tema escuro) -->
   <svg class="hidden size-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -31,11 +31,5 @@ const { label } = Astro.props;
       apply(next);
       try { localStorage.setItem(KEY, next); } catch {}
     });
-  });
-  // Se o utilizador nunca escolheu, segue as mudanças do sistema.
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    let stored: string | null = null;
-    try { stored = localStorage.getItem(KEY); } catch {}
-    if (!stored) apply(e.matches ? 'dark' : 'light');
   });
 </script>

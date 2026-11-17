@@ -7,7 +7,7 @@ export function personJsonLd(siteUrl: URL, lang: string, description: string) {
     '@type': 'Person',
     '@id': new URL('/#person', siteUrl).href,
     name: site.fullName,
-    jobTitle: lang === 'en' ? 'Junior web developer' : site.role,
+    jobTitle: lang === 'en' ? 'Web developer' : site.role,
     description,
     url: siteUrl.href,
     image: new URL('/og-default.png', siteUrl).href,

@@ -3,7 +3,7 @@ interface Props { eyebrow?: string; title: string; intro?: string; as?: 'h1' | '
 const { eyebrow, title, intro, as: H = 'h2' } = Astro.props;
 ---
 <div class="max-w-2xl">
-  {eyebrow && <p class="mb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-accent">{eyebrow}</p>}
-  <H class:list={[H === 'h1' ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl', 'font-bold']}>{title}</H>
+  {eyebrow && <p class="eyebrow mb-3"><span aria-hidden="true">// </span>{eyebrow.toLowerCase()}</p>}
+  <H class:list={[H === 'h1' ? 'text-4xl sm:text-6xl' : 'text-3xl sm:text-4xl', 'font-bold']}>{title}</H>
   {intro && <p class="mt-4 text-lg text-muted">{intro}</p>}
 </div>

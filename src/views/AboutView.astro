@@ -13,74 +13,125 @@ const { lang } = Astro.props;
 const copy = {
   pt: {
     title: 'Sobre mim',
-    description: 'Quem sou, o que faço e com que tecnologias trabalho.',
+    description: 'Quem sou, o que estudo, como trabalho e com que tecnologias.',
     eyebrow: 'Sobre',
-    intro: 'Programador júnior no Algarve, entre o trabalho numa empresa de software, os estudos na UAlg e os sites que faço para o comércio local.',
+    intro: 'Programador web no Algarve, estudante na Universidade do Algarve e apaixonado por sites que carregam depressa.',
     body: [
-      'Comecei a programar por curiosidade e rapidamente percebi que gosto de construir coisas que as pessoas usam todos os dias. Hoje trabalho numa empresa de software, onde aprendo a desenvolver em equipa, com revisão de código e processos a sério.',
-      'Fora do horário de trabalho ajudo negócios da região (restaurantes, barbearias, livrarias, alojamentos locais) a ter um site rápido, acessível e fácil de manter. Gosto de projetos em que consigo falar diretamente com quem vai usar o resultado.',
-      'Em paralelo frequento o CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve.',
+      'Comecei a programar por curiosidade e rapidamente percebi que gosto de construir coisas que as pessoas usam todos os dias. Desde então tenho aprendido sobretudo a fazer: um projeto de cada vez, cada um um pouco mais ambicioso do que o anterior.',
+      'Estou a tirar o CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve, onde trabalho bases de dados, redes, programação e desenvolvimento web. Muitos dos projetos deste portefólio nasceram de trabalhos do curso.',
+      'Fora das aulas faço sites para negócios da região: restaurantes, barbearias, livrarias, alojamentos locais. Gosto de falar diretamente com quem vai usar o resultado e de entregar algo simples de manter, rápido no telemóvel e fácil de encontrar no Google.',
+    ],
+    principlesTitle: 'Como trabalho',
+    principles: [
+      { k: 'rápido', v: 'Sites estáticos e leves, que abrem em segundos mesmo em 4G.' },
+      { k: 'acessível', v: 'Contraste, teclado e leitores de ecrã pensados desde o início.' },
+      { k: 'simples', v: 'Conteúdo fácil de atualizar, sem depender de mim para tudo.' },
+      { k: 'claro', v: 'Prazos e orçamentos combinados à partida, sem surpresas.' },
     ],
     timelineTitle: 'Percurso',
     timeline: [
-      { when: 'Atual', what: 'Programador júnior', where: 'Empresa de software, Algarve' },
-      { when: 'Atual', what: 'CTeSP em Sistemas e Tecnologias de Informação', where: 'Universidade do Algarve' },
-      { when: 'Freelance', what: 'Sites para comércio local', where: 'Algarve' },
+      { when: 'agora', what: 'CTeSP em Sistemas e Tecnologias de Informação', where: 'Universidade do Algarve' },
+      { when: 'agora', what: 'Sites para comércio local', where: 'Freelance · Algarve' },
+      { when: 'sempre', what: 'Projetos pessoais para aprender', where: 'GitHub' },
     ],
     skillsTitle: 'Tecnologias',
+    groups: { frontend: 'frontend', backend: 'backend', tools: 'ferramentas' },
     cta: 'Ver projetos',
+    contact: 'Falar comigo',
   },
   en: {
     title: 'About me',
-    description: 'Who I am, what I do and the technologies I work with.',
+    description: 'Who I am, what I study, how I work and which technologies I use.',
     eyebrow: 'About',
-    intro: 'Junior developer in the Algarve, balancing a job at a software company, my studies at the University of the Algarve and websites for local businesses.',
+    intro: 'Web developer in the Algarve, student at the University of the Algarve, and a fan of websites that load fast.',
     body: [
-      'I started programming out of curiosity and quickly realised I enjoy building things people use every day. Today I work at a software company, where I am learning to build software as part of a team, with code reviews and real processes.',
-      'Outside work I help local businesses (restaurants, barbershops, bookshops, holiday rentals) get a website that is fast, accessible and easy to maintain. I like projects where I can talk directly to the people who will use the result.',
-      'At the same time I am studying for a CTeSP (higher professional technical course) in Information Systems and Technologies at the University of the Algarve.',
+      'I started programming out of curiosity and quickly realised I enjoy building things people use every day. Since then I have learned mostly by doing: one project at a time, each a little more ambitious than the last.',
+      'I am studying for a CTeSP (higher professional technical course) in Information Systems and Technologies at the University of the Algarve, covering databases, networking, programming and web development. Several projects in this portfolio started as coursework.',
+      'Outside class I build websites for local businesses: restaurants, barbershops, bookshops, holiday rentals. I like talking directly to the people who will use the result and delivering something that is easy to maintain, fast on mobile and easy to find on Google.',
+    ],
+    principlesTitle: 'How I work',
+    principles: [
+      { k: 'fast', v: 'Lightweight static sites that open in seconds, even on 4G.' },
+      { k: 'accessible', v: 'Contrast, keyboard and screen readers considered from day one.' },
+      { k: 'simple', v: 'Content you can update yourself, without depending on me.' },
+      { k: 'clear', v: 'Deadlines and quotes agreed up front, no surprises.' },
     ],
     timelineTitle: 'Background',
     timeline: [
-      { when: 'Current', what: 'Junior developer', where: 'Software company, Algarve' },
-      { when: 'Current', what: 'CTeSP in Information Systems and Technologies', where: 'University of the Algarve' },
-      { when: 'Freelance', what: 'Websites for local businesses', where: 'Algarve' },
+      { when: 'now', what: 'CTeSP in Information Systems and Technologies', where: 'University of the Algarve' },
+      { when: 'now', what: 'Websites for local businesses', where: 'Freelance · Algarve' },
+      { when: 'always', what: 'Personal projects to learn', where: 'GitHub' },
     ],
     skillsTitle: 'Technologies',
+    groups: { frontend: 'frontend', backend: 'backend', tools: 'tools' },
     cta: 'See projects',
+    contact: 'Get in touch',
   },
 }[lang];
 
-const skills = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Astro', 'Tailwind CSS', 'React', 'Node.js', 'PHP', 'MySQL', 'Git', 'Figma'];
+const skills = {
+  frontend: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Astro', 'React', 'Tailwind CSS'],
+  backend: ['Node.js', 'Express', 'PHP', 'MySQL'],
+  tools: ['Git', 'GitHub', 'Vercel', 'Figma', 'Lighthouse'],
+} as const;
+const p = (path: string) => localizePath(lang, path);
 ---
 <BaseLayout lang={lang} title={copy.title} description={copy.description}>
   <Container class="py-16 sm:py-24">
     <SectionHeading as="h1" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} />
-    <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-      <div class="prose-project">
-        {copy.body.map((para) => <p>{para}</p>)}
+
+    <div class="mt-14 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
+      <div>
+        <div class="prose-project">
+          {copy.body.map((para) => <p>{para}</p>)}
+        </div>
+
+        <h2 class="mt-14 text-2xl font-bold">{copy.principlesTitle}</h2>
+        <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+          {copy.principles.map((pr) => (
+            <li class="card p-5">
+              <p class="font-mono text-sm text-accent"><span class="text-muted" aria-hidden="true">const </span>{pr.k}<span class="text-muted" aria-hidden="true"> = true;</span></p>
+              <p class="mt-2 text-[0.95rem] text-muted">{pr.v}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <Button href={p('/projetos/')}>{copy.cta} <span aria-hidden="true">→</span></Button>
+          <Button href={p('/contacto/')} variant="secondary">{copy.contact}</Button>
+        </div>
       </div>
-      <aside class="space-y-10">
-        <section>
+
+      <aside class="space-y-6">
+        <section class="card p-6">
           <h2 class="text-xl font-bold">{copy.timelineTitle}</h2>
-          <ol class="mt-4 space-y-4 border-l border-border pl-5">
+          <ol class="mt-5 space-y-5 border-l border-border pl-5">
             {copy.timeline.map((item) => (
               <li class="relative">
-                <span class="absolute -left-[1.6rem] top-2 size-2.5 rounded-full bg-accent" aria-hidden="true"></span>
-                <p class="font-mono text-xs uppercase tracking-wider text-muted">{item.when}</p>
+                <span class="absolute -left-[1.6rem] top-1.5 size-2.5 rounded-full border-2 border-bg bg-accent ring-1 ring-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs text-sea">{item.when}</p>
                 <p class="font-semibold">{item.what}</p>
                 <p class="text-sm text-muted">{item.where}</p>
               </li>
             ))}
           </ol>
         </section>
-        <section>
+
+        <section class="card p-6">
           <h2 class="text-xl font-bold">{copy.skillsTitle}</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {skills.map((s) => <li><Tag>{s}</Tag></li>)}
-          </ul>
+          <dl class="mt-5 space-y-4">
+            {(Object.keys(skills) as (keyof typeof skills)[]).map((g) => (
+              <div>
+                <dt class="font-mono text-xs text-sea">{copy.groups[g]}</dt>
+                <dd class="mt-2">
+                  <ul class="flex flex-wrap gap-1.5">
+                    {skills[g].map((s) => <li><Tag>{s}</Tag></li>)}
+                  </ul>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </section>
-        <Button href={localizePath(lang, '/projetos/')}>{copy.cta}</Button>
       </aside>
     </div>
   </Container>

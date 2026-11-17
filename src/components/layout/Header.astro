@@ -19,10 +19,10 @@ const otherLang: Lang = lang === 'pt' ? 'en' : 'pt';
 const otherHref = translatePath(current, otherLang);
 const isActive = (href: string) => current === href || current.startsWith(href);
 ---
-<header class="sticky top-0 z-40 border-b border-border/70 bg-bg/85 backdrop-blur-md">
+<header class="sticky top-0 z-40 border-b border-border/60 bg-bg/70 backdrop-blur-xl">
   <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-    <a href={localizePath(lang, '/')} class="font-display text-lg font-bold tracking-tight text-ink no-underline">
-      {site.name}<span class="text-accent">.</span>
+    <a href={localizePath(lang, '/')} class="group font-mono text-[0.95rem] font-semibold text-ink no-underline">
+      <span class="text-sea" aria-hidden="true">~/</span>{site.name.toLowerCase()}<span class="ml-0.5 inline-block h-[1.05em] w-[0.55em] translate-y-[0.15em] bg-accent motion-safe:animate-pulse" aria-hidden="true"></span>
     </a>
 
     <nav aria-label={t('nav.main')} class="flex items-center gap-1">
@@ -33,10 +33,10 @@ const isActive = (href: string) => current === href || current.startsWith(href);
               href={l.href}
               aria-current={isActive(l.href) ? 'page' : undefined}
               class:list={[
-                'rounded-full px-3 py-2 text-[0.95rem] font-medium no-underline transition-colors hover:bg-accent-soft hover:text-ink',
-                isActive(l.href) ? 'text-accent' : 'text-muted',
+                'rounded-md px-3 py-2 font-mono text-sm no-underline transition-colors hover:bg-surface-2 hover:text-ink',
+                isActive(l.href) ? 'text-ink' : 'text-muted',
               ]}
-            >{l.label}</a>
+            >{isActive(l.href) && <span class="text-accent" aria-hidden="true">./</span>}{l.label.toLowerCase()}</a>
           </li>
         ))}
       </ul>
@@ -47,7 +47,7 @@ const isActive = (href: string) => current === href || current.startsWith(href);
         lang={locales[otherLang].html}
         aria-label={t('lang.switch')}
         title={t('lang.switch')}
-        class="inline-flex h-10 items-center rounded-full px-3 font-mono text-sm font-medium uppercase text-muted no-underline transition-colors hover:bg-accent-soft hover:text-ink"
+        class="inline-flex h-10 items-center rounded-md px-3 font-mono text-sm font-medium uppercase text-muted no-underline transition-colors hover:bg-surface-2 hover:text-ink"
       >{otherLang}</a>
       <ThemeToggle label={t('theme.toggle')} />
       <button
@@ -56,7 +56,7 @@ const isActive = (href: string) => current === href || current.startsWith(href);
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label={t('nav.menu')}
-        class="inline-flex size-10 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-ink md:hidden cursor-pointer"
+        class="inline-flex size-10 items-center justify-center rounded-md text-muted hover:bg-surface-2 hover:text-ink md:hidden cursor-pointer"
       >
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" />
@@ -72,7 +72,7 @@ const isActive = (href: string) => current === href || current.startsWith(href);
           <a
             href={l.href}
             aria-current={isActive(l.href) ? 'page' : undefined}
-            class:list={['block rounded-lg px-3 py-3 font-medium no-underline hover:bg-accent-soft', isActive(l.href) ? 'text-accent' : 'text-ink']}
+            class:list={['block rounded-lg px-3 py-3 font-medium no-underline hover:bg-surface-2', isActive(l.href) ? 'text-accent' : 'text-ink']}
           >{l.label}</a>
         </li>
       ))}

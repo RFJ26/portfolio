@@ -10,16 +10,16 @@ const year = new Date().getFullYear();
 <footer class="mt-24 border-t border-border">
   <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
     <div>
-      <p class="font-display font-bold text-ink">{site.fullName}<span class="text-accent">.</span></p>
-      <p class="text-sm text-muted">{t('site.role')} · {t('footer.location')}</p>
+      <p class="font-mono font-semibold text-ink"><span class="text-sea" aria-hidden="true">~/</span>{site.name.toLowerCase()}</p>
+      <p class="mt-1 text-sm text-muted">{t('site.role')} · {t('footer.location')}</p>
     </div>
-    <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-      <li><a class="text-muted hover:text-accent" href={`mailto:${site.email}`}>{site.email}</a></li>
-      <li><a class="text-muted hover:text-accent" href={site.social.github} rel="me noopener" target="_blank">GitHub</a></li>
-      <li><a class="text-muted hover:text-accent" href={site.social.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+    <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-sm">
+      <li><a class="text-muted no-underline hover:text-accent" href={`mailto:${site.email}`}>email</a></li>
+      <li><a class="text-muted no-underline hover:text-accent" href={site.social.github} rel="me noopener" target="_blank">github</a></li>
+      <li><a class="text-muted no-underline hover:text-accent" href={site.social.linkedin} rel="me noopener" target="_blank">linkedin</a></li>
     </ul>
   </div>
-  <div class="mx-auto max-w-6xl px-4 pb-8 text-xs text-muted sm:px-6">
-    © {year} {site.fullName}. {t('footer.rights')}
+  <div class="mx-auto max-w-6xl px-4 pb-8 font-mono text-xs text-muted sm:px-6">
+    © {year} {site.fullName} · {t('footer.rights')}
   </div>
 </footer>

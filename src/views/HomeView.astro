@@ -15,15 +15,25 @@ const p = (path: string) => localizePath(lang, path);
 
 const copy = {
   pt: {
-    description: 'Programador web júnior no Algarve. Desenvolvo sites rápidos e acessíveis para comércio local e trabalho numa empresa de software.',
-    eyebrow: 'Disponível para novos projetos no Algarve',
-    title: 'Sites rápidos e claros para <span class="text-accent">negócios locais</span>.',
-    intro: 'Sou o Romeu, programador júnior numa empresa de software e estudante do CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve. Nas horas livres crio sites para o comércio local.',
+    description: 'Programador web no Algarve e estudante de Sistemas e Tecnologias de Informação na UAlg. Crio sites rápidos e acessíveis para comércio local.',
+    eyebrow: 'Disponível para novos projetos',
+    title: 'Crio sites rápidos para <span class="text-gradient">negócios locais</span>.',
+    intro: 'Sou o Romeu, programador web no Algarve e estudante do CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve. Ajudo restaurantes, lojas e alojamentos a ter um site que carrega depressa e é fácil de manter.',
     primary: 'Ver projetos',
     secondary: 'Falar comigo',
+    terminal: {
+      cmd: 'whoami',
+      out: [
+        { key: 'nome', value: 'Romeu' },
+        { key: 'local', value: 'Algarve, PT' },
+        { key: 'estudo', value: 'CTeSP TI · UAlg' },
+        { key: 'faço', value: 'sites para comércio local' },
+        { key: 'estado', value: 'disponível ✓' },
+      ],
+    },
     featuredEyebrow: 'Trabalho recente',
     featuredTitle: 'Projetos em destaque',
-    featuredIntro: 'Uma seleção de sites e aplicações que fiz para clientes, para a empresa e para aprender.',
+    featuredIntro: 'Sites para clientes, projetos do curso e ferramentas que fiz para aprender.',
     featuredAll: 'Ver todos',
     servicesEyebrow: 'Serviços',
     servicesTitle: 'Como posso ajudar',
@@ -33,15 +43,25 @@ const copy = {
     cta: 'Pedir orçamento',
   },
   en: {
-    description: 'Junior web developer in the Algarve, Portugal. I build fast, accessible websites for local businesses and work at a software company.',
-    eyebrow: 'Available for new projects in the Algarve',
-    title: 'Fast, clear websites for <span class="text-accent">local businesses</span>.',
-    intro: "I'm Romeu, a junior developer at a software company and a student of Information Systems and Technologies (CTeSP) at the University of the Algarve. In my spare time I build websites for local businesses.",
+    description: 'Web developer in the Algarve and Information Systems and Technologies student at the University of the Algarve. I build fast, accessible websites for local businesses.',
+    eyebrow: 'Available for new projects',
+    title: 'I build fast websites for <span class="text-gradient">local businesses</span>.',
+    intro: "I'm Romeu, a web developer in the Algarve and a student of Information Systems and Technologies (CTeSP) at the University of the Algarve. I help restaurants, shops and holiday rentals get a website that loads fast and is easy to maintain.",
     primary: 'See projects',
     secondary: 'Get in touch',
+    terminal: {
+      cmd: 'whoami',
+      out: [
+        { key: 'name', value: 'Romeu' },
+        { key: 'location', value: 'Algarve, PT' },
+        { key: 'studying', value: 'CTeSP IT · UAlg' },
+        { key: 'builds', value: 'sites for local business' },
+        { key: 'status', value: 'available ✓' },
+      ],
+    },
     featuredEyebrow: 'Recent work',
     featuredTitle: 'Featured projects',
-    featuredIntro: 'A selection of websites and apps I built for clients, for work and to learn.',
+    featuredIntro: 'Client websites, course projects and tools I built to learn.',
     featuredAll: 'See all',
     servicesEyebrow: 'Services',
     servicesTitle: 'How I can help',
@@ -51,6 +71,8 @@ const copy = {
     cta: 'Ask for a quote',
   },
 }[lang];
+
+const heroStack = ['Astro', 'TypeScript', 'Tailwind CSS', 'Node.js'];
 ---
 <BaseLayout lang={lang} description={copy.description} type="profile" jsonLd={personJsonLd(Astro.site!, lang, copy.description)}>
   <Hero
@@ -59,6 +81,8 @@ const copy = {
     intro={copy.intro}
     primary={{ href: p('/projetos/'), label: copy.primary }}
     secondary={{ href: p('/contacto/'), label: copy.secondary }}
+    terminal={copy.terminal}
+    stack={heroStack}
   />
   <FeaturedProjects lang={lang} eyebrow={copy.featuredEyebrow} title={copy.featuredTitle} intro={copy.featuredIntro} all={copy.featuredAll} />
   <Services eyebrow={copy.servicesEyebrow} title={copy.servicesTitle} intro={copy.servicesIntro} items={services[lang]} />

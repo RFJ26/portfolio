@@ -1,15 +1,13 @@
-// Dados globais do site. Substitui os valores marcados com TODO.
+// Dados globais do site.
 export const site = {
   name: 'Romeu',
   // TODO: apelido, se quiseres que apareça no título e nos dados estruturados
   fullName: 'Romeu',
-  role: 'Programador web júnior',
+  role: 'Programador web',
   location: 'Algarve, Portugal',
-  // TODO: endereço real de contacto
-  email: 'ola@exemplo.pt',
+  email: 'romeufgjanuario@gmail.com',
   social: {
-    // TODO: links reais
-    github: 'https://github.com/',
-    linkedin: 'https://www.linkedin.com/',
+    github: 'https://github.com/RFJ26',
+    linkedin: 'https://www.linkedin.com/in/romeu-janu%C3%A1rio-917735416/',
   },
 } as const;

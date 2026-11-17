@@ -7,7 +7,7 @@ galleryAlts: [Project grid with technology filter, Project detail page]
 
 ## The challenge
 
-I needed one place to show my work, both at the company and for local clients, that was fast, easy to update and good for SEO.
+I needed one place to show my work, from academic projects to websites for local clients, that was fast, easy to update and good for SEO.
 
 ## The solution
 

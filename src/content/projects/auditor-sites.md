@@ -3,7 +3,7 @@ title: Auditor de sites
 summary: Ferramenta de linha de comandos que analisa vários sites de uma vez e gera um relatório com performance, SEO e acessibilidade.
 stack: [Node.js, TypeScript, Puppeteer]
 category: profissional
-repoUrl: https://github.com/USERNAME/auditor-sites
+repoUrl: https://github.com/RFJ26/auditor-sites
 cover: ../../assets/projects/auditor-sites/cover.webp
 coverAlt: Relatório gerado pelo auditor de sites
 gallery:

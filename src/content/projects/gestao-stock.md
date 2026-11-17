@@ -3,7 +3,7 @@ title: Gestão de stock
 summary: Aplicação web para registar entradas e saídas de produtos, com alertas de stock mínimo e relatórios mensais. Projeto do CTeSP.
 stack: [Node.js, Express, MySQL, JavaScript]
 category: academico
-repoUrl: https://github.com/USERNAME/gestao-stock
+repoUrl: https://github.com/RFJ26/gestao-stock
 cover: ../../assets/projects/gestao-stock/cover.webp
 coverAlt: Painel principal da aplicação de gestão de stock
 gallery:

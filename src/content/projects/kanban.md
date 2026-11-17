@@ -3,7 +3,7 @@ title: Quadro Kanban
 summary: Quadro Kanban com arrastar e largar, várias colunas e dados guardados no navegador. Projeto pessoal para praticar React e TypeScript.
 stack: [React, TypeScript, Vite]
 category: pessoal
-repoUrl: https://github.com/USERNAME/kanban
+repoUrl: https://github.com/RFJ26/kanban
 liveUrl: https://example.com
 cover: ../../assets/projects/kanban/cover.webp
 coverAlt: Quadro Kanban com três colunas de tarefas
