@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ContactForm, { type ContactLabels } from '../components/contact/ContactForm.astro';
+import { site } from '../data/site';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const copy: Record<Lang, { title: string; description: string; eyebrow: string; intro: string; direct: string; based: string; response: string; form: ContactLabels }> = {
+  pt: {
+    title: 'Contacto',
+    description: 'Peça um orçamento para o seu site ou fale comigo sobre uma oportunidade.',
+    eyebrow: 'Contacto',
+    intro: 'Precisa de um site para o seu negócio, quer melhorar o que já tem ou tem uma oportunidade de trabalho? Escreva-me.',
+    direct: 'Prefere email?',
+    based: 'Baseado no Algarve, disponível para trabalho remoto.',
+    response: 'Respondo normalmente em 24 horas úteis.',
+    form: {
+      name: 'Nome',
+      email: 'Email',
+      type: 'Assunto',
+      typeOptions: ['Site novo', 'Melhorar um site existente', 'Manutenção', 'Oportunidade de emprego', 'Outro'],
+      message: 'Mensagem',
+      consent: 'Aceito que os dados deste formulário sejam usados apenas para responder ao meu pedido.',
+      submit: 'Enviar mensagem',
+      sending: 'A enviar…',
+      success: 'Obrigado! A mensagem foi enviada e responderei em breve.',
+      error: 'Não foi possível enviar a mensagem. Tente novamente ou escreva diretamente para o email ao lado.',
+      notConfigured: 'Formulário por configurar: define a variável PUBLIC_FORMSPREE_ID. Entretanto, use o email.',
+      errors: {
+        required: 'Este campo é obrigatório.',
+        email: 'Indique um email válido, por exemplo nome@dominio.pt.',
+        minMessage: 'Escreva pelo menos 20 caracteres.',
+        consent: 'É preciso aceitar para podermos responder.',
+      },
+      privacyNote: 'Enviado através do Formspree.',
+    },
+  },
+};
+const c = copy[lang];
+---
+<BaseLayout lang={lang} title={c.title} description={c.description}>
+  <Container class="py-16 sm:py-20">
+    <SectionHeading as="h1" eyebrow={c.eyebrow} title={c.title} intro={c.intro} />
+    <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_320px]">
+      <div class="rounded-3xl border border-border bg-surface p-6 sm:p-8">
+        <ContactForm labels={c.form} lang={lang} />
+      </div>
+      <aside class="space-y-6">
+        <div>
+          <h2 class="text-lg font-bold">{c.direct}</h2>
+          <a href={`mailto:${site.email}`} class="mt-1 inline-block break-all font-medium text-accent underline hover:text-accent-hover">{site.email}</a>
+        </div>
+        <p class="text-muted">{c.based}</p>
+        <p class="text-muted">{c.response}</p>
+        <ul class="flex gap-4">
+          <li><a class="font-medium text-ink underline hover:text-accent" href={site.social.github} rel="me noopener" target="_blank">GitHub</a></li>
+          <li><a class="font-medium text-ink underline hover:text-accent" href={site.social.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+        </ul>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>

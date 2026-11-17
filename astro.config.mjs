@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
@@ -10,6 +10,12 @@ const SITE_URL = process.env.SITE_URL ?? 'https://romeu-portfolio.vercel.app';
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: 'always',
+  env: {
+    schema: {
+      // ID do formulário Formspree (a parte final de https://formspree.io/f/<ID>).
+      PUBLIC_FORMSPREE_ID: envField.string({ context: 'client', access: 'public', optional: true }),
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
