@@ -1,0 +1,62 @@
+---
+import { techSlug } from '../../lib/projects';
+
+interface Props {
+  techs: { name: string; count: number }[];
+  total: number;
+  labels: { group: string; all: string; count: string; countOne: string; empty: string };
+}
+const { techs, total, labels } = Astro.props;
+const btn =
+  'cursor-pointer rounded-full border px-3.5 py-1.5 font-mono text-sm transition-colors border-border bg-surface text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-on-accent';
+---
+<div data-filter data-label-count={labels.count} data-label-count-one={labels.countOne}>
+  <div role="group" aria-label={labels.group} class="flex flex-wrap gap-2">
+    <button type="button" class={btn} data-tech="" aria-pressed="true">
+      {labels.all} <span class="opacity-70">({total})</span>
+    </button>
+    {techs.map((t) => (
+      <button type="button" class={btn} data-tech={techSlug(t.name)} aria-pressed="false">
+        {t.name} <span class="opacity-70">({t.count})</span>
+      </button>
+    ))}
+  </div>
+  <p class="mt-4 text-sm text-muted" aria-live="polite" data-filter-status></p>
+  <p class="mt-8 hidden rounded-2xl border border-dashed border-border p-10 text-center text-muted" data-filter-empty>{labels.empty}</p>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-filter]');
+  if (root) {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('button[data-tech]')];
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-project]')];
+    const status = root.querySelector<HTMLElement>('[data-filter-status]')!;
+    const empty = root.querySelector<HTMLElement>('[data-filter-empty]')!;
+    const valid = new Set(buttons.map((b) => b.dataset.tech));
+
+    function apply(tech: string, push: boolean) {
+      if (!valid.has(tech)) tech = '';
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tech === tech)));
+      let visible = 0;
+      cards.forEach((card) => {
+        const match = !tech || (card.dataset.techs ?? '').split(' ').includes(tech);
+        // Esconde o <li> que contém o cartão, para a grelha não ficar com buracos.
+        (card.closest('li') ?? card).hidden = !match;
+        if (match) visible++;
+      });
+      const tpl = visible === 1 ? root!.dataset.labelCountOne! : root!.dataset.labelCount!;
+      status.textContent = tpl.replace('{n}', String(visible));
+      empty.classList.toggle('hidden', visible > 0);
+
+      if (push) {
+        const url = new URL(location.href);
+        if (tech) url.searchParams.set('tech', tech);
+        else url.searchParams.delete('tech');
+        history.replaceState(null, '', url);
+      }
+    }
+
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.tech ?? '', true)));
+    apply(new URLSearchParams(location.search).get('tech') ?? '', false);
+  }
+</script>

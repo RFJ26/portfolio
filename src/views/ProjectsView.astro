@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+import TechFilter from '../components/projects/TechFilter.astro';
+import { getProjects, getTechnologies } from '../lib/projects';
+import { categoryLabels } from '../i18n/categories';
+import { localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const copy = {
+  pt: {
+    title: 'Projetos',
+    description: 'Sites para comércio local, projetos profissionais, académicos e pessoais. Filtra por tecnologia.',
+    eyebrow: 'Portefólio',
+    intro: 'Sites para negócios do Algarve, ferramentas internas e projetos para aprender. Filtra por tecnologia para encontrar o que procuras.',
+    filter: { group: 'Filtrar por tecnologia', all: 'Todas', count: '{n} projetos', countOne: '1 projeto', empty: 'Nenhum projeto usa esta tecnologia.' },
+  },
+}[lang];
+
+const projects = await getProjects();
+const techs = getTechnologies(projects);
+---
+<BaseLayout lang={lang} title={copy.title} description={copy.description}>
+  <Container class="py-16 sm:py-20">
+    <SectionHeading as="h1" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} />
+    <div class="mt-10">
+      <TechFilter techs={techs} total={projects.length} labels={copy.filter} />
+    </div>
+    <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((p, i) => (
+        <li>
+          <ProjectCard
+            project={p}
+            href={localizePath(lang, `/projetos/${p.id}/`)}
+            categoryLabel={categoryLabels[lang][p.data.category]}
+            headingLevel="h2"
+            eager={i < 3}
+          />
+        </li>
+      ))}
+    </ul>
+  </Container>
+</BaseLayout>
