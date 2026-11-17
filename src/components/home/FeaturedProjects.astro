@@ -1,0 +1,33 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Button from '../ui/Button.astro';
+import ProjectCard from '../projects/ProjectCard.astro';
+import { getFeaturedProjects } from '../../lib/projects';
+import { categoryLabels } from '../../i18n/categories';
+import { localizePath } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; eyebrow: string; title: string; intro: string; all: string }
+const { lang, eyebrow, title, intro, all } = Astro.props;
+const featured = await getFeaturedProjects(3);
+---
+<section class="border-y border-border bg-surface/60 py-20">
+  <Container>
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
+      <Button href={localizePath(lang, '/projetos/')} variant="secondary" class="shrink-0">{all} →</Button>
+    </div>
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((p) => (
+        <li>
+          <ProjectCard
+            project={p}
+            href={localizePath(lang, `/projetos/${p.id}/`)}
+            categoryLabel={categoryLabels[lang][p.data.category]}
+          />
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

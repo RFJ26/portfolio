@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import Services from '../components/home/Services.astro';
 import CallToAction from '../components/home/CallToAction.astro';
+import FeaturedProjects from '../components/home/FeaturedProjects.astro';
 import { services } from '../data/services';
 import { localizePath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
@@ -19,6 +20,10 @@ const copy = {
     intro: 'Sou o Romeu, programador júnior numa empresa de software e estudante do CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve. Nas horas livres crio sites para o comércio local.',
     primary: 'Ver projetos',
     secondary: 'Falar comigo',
+    featuredEyebrow: 'Trabalho recente',
+    featuredTitle: 'Projetos em destaque',
+    featuredIntro: 'Uma seleção de sites e aplicações que fiz para clientes, para a empresa e para aprender.',
+    featuredAll: 'Ver todos',
     servicesEyebrow: 'Serviços',
     servicesTitle: 'Como posso ajudar',
     servicesIntro: 'Do primeiro site à manutenção do dia a dia, com foco em performance, acessibilidade e simplicidade.',
@@ -36,7 +41,7 @@ const copy = {
     primary={{ href: p('/projetos/'), label: copy.primary }}
     secondary={{ href: p('/contacto/'), label: copy.secondary }}
   />
-  <slot name="featured" />
+  <FeaturedProjects lang={lang} eyebrow={copy.featuredEyebrow} title={copy.featuredTitle} intro={copy.featuredIntro} all={copy.featuredAll} />
   <Services eyebrow={copy.servicesEyebrow} title={copy.servicesTitle} intro={copy.servicesIntro} items={services[lang]} />
   <CallToAction title={copy.ctaTitle} text={copy.ctaText} cta={{ href: p('/contacto/'), label: copy.cta }} />
 </BaseLayout>

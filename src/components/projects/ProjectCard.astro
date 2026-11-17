@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import Tag from '../ui/Tag.astro';
+import { techSlug, type Project } from '../../lib/projects';
+
+interface Props {
+  project: Project;
+  href: string;
+  categoryLabel: string;
+  headingLevel?: 'h2' | 'h3';
+  eager?: boolean;
+}
+const { project, href, categoryLabel, headingLevel: H = 'h3', eager = false } = Astro.props;
+const { title, summary, stack, cover, coverAlt } = project.data;
+---
+<article
+  class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-accent"
+  data-project
+  data-techs={stack.map(techSlug).join(' ')}
+>
+  <div class="aspect-[16/10] overflow-hidden bg-accent-soft">
+    <Image
+      src={cover}
+      alt={coverAlt ?? ''}
+      widths={[400, 640, 800]}
+      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+      loading={eager ? 'eager' : 'lazy'}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+    />
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="font-mono text-xs uppercase tracking-wider text-muted">{categoryLabel}</p>
+    <H class="mt-1.5 text-xl font-bold">
+      <!-- O link cobre o cartão inteiro através do ::after -->
+      <a href={href} class="text-ink no-underline after:absolute after:inset-0 after:content-[''] group-hover:text-accent">{title}</a>
+    </H>
+    <p class="mt-2 flex-1 text-[0.95rem] text-muted">{summary}</p>
+    <ul class="mt-4 flex flex-wrap gap-1.5">
+      {stack.map((tech) => <li><Tag>{tech}</Tag></li>)}
+    </ul>
+  </div>
+</article>
