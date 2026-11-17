@@ -5,6 +5,7 @@ import Services from '../components/home/Services.astro';
 import CallToAction from '../components/home/CallToAction.astro';
 import FeaturedProjects from '../components/home/FeaturedProjects.astro';
 import { services } from '../data/services';
+import { personJsonLd } from '../lib/structured-data';
 import { localizePath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
@@ -33,7 +34,7 @@ const copy = {
   },
 }[lang];
 ---
-<BaseLayout lang={lang} description={copy.description}>
+<BaseLayout lang={lang} description={copy.description} type="profile" jsonLd={personJsonLd(Astro.site!, lang, copy.description)}>
   <Hero
     eyebrow={copy.eyebrow}
     title={copy.title}
