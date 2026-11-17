@@ -13,11 +13,11 @@ const btn =
 <div data-filter data-label-count={labels.count} data-label-count-one={labels.countOne}>
   <div role="group" aria-label={labels.group} class="flex flex-wrap gap-2">
     <button type="button" class={btn} data-tech="" aria-pressed="true">
-      {labels.all} <span class="opacity-70">({total})</span>
+      {labels.all} <span>({total})</span>
     </button>
     {techs.map((t) => (
       <button type="button" class={btn} data-tech={techSlug(t.name)} aria-pressed="false">
-        {t.name} <span class="opacity-70">({t.count})</span>
+        {t.name} <span>({t.count})</span>
       </button>
     ))}
   </div>

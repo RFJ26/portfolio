@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# Portefólio do Romeu
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Site pessoal em Astro + Tailwind CSS, estático, com deploy na Vercel. Português em `/` e inglês em `/en/`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Comandos
 
-## 🚀 Project Structure
+| Comando | O que faz |
+|---|---|
+| `npm install` | Instala as dependências |
+| `npm run dev` | Servidor local em `http://localhost:4321` |
+| `npm run build` | Gera o site em `dist/` |
+| `npm run preview` | Serve o `dist/` localmente |
+| `npm run check` | Verificação de tipos (`astro check`) |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Variáveis de ambiente
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Copia `.env.example` para `.env`. Na Vercel, define-as em *Settings → Environment Variables*.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `PUBLIC_FORMSPREE_ID`: ID do formulário Formspree (`https://formspree.io/f/<ID>`). Sem ele, o formulário fica desativado e aparece um aviso.
+- `SITE_URL`: URL público, usado no sitemap, canonical, hreflang e Open Graph.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Adicionar um projeto
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Cria `src/content/projects/<slug>.md` com o frontmatter:
 
-## 🧞 Commands
+   ```yaml
+   title: Nome do projeto
+   summary: Uma ou duas frases (máx. 220 caracteres).
+   stack: [Astro, Tailwind CSS]
+   category: comercio-local # comercio-local | profissional | academico | pessoal
+   repoUrl: https://github.com/...   # opcional
+   liveUrl: https://...              # opcional
+   cover: ../../assets/projects/<slug>/cover.webp
+   coverAlt: Descrição da imagem
+   gallery:                          # opcional
+     - src: ../../assets/projects/<slug>/galeria-1.webp
+       alt: Descrição
+   featured: true                    # aparece na página inicial (máx. 3)
+   date: 2026-11-17
+   ```
 
-All commands are run from the root of the project, from a terminal:
+2. Põe as imagens em `src/assets/projects/<slug>/` (o Astro otimiza-as no build).
+3. Para a versão inglesa, cria `src/content/projects/en/<slug>.md` só com `title`, `summary`, `coverAlt`, `galleryAlts` e o texto. Se não existir, a página inglesa mostra o texto em português com um aviso.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Estrutura
 
-## 👀 Want to learn more?
+- `src/pages/`: rotas (as de inglês em `src/pages/en/`, com URLs traduzidos)
+- `src/views/`: corpo de cada página, partilhado pelos dois idiomas
+- `src/components/`: layout, UI, home, projetos, contacto, SEO
+- `src/i18n/`: textos da interface, categorias e tradução de URLs
+- `src/data/site.ts`: nome, email e redes sociais
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Antes de publicar
+
+Procura `TODO` e `USERNAME` no projeto: email, links das redes sociais, URLs dos repositórios e, se quiseres, o apelido. As imagens em `src/assets/projects/` são marcadores; substitui-as por capturas reais.
