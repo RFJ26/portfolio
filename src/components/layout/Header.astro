@@ -1,0 +1,82 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { site } from '../../data/site';
+import { useTranslations, type Lang } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = [
+  { href: localizePath(lang, '/projetos/'), label: t('nav.projects') },
+  { href: localizePath(lang, '/sobre/'), label: t('nav.about') },
+  { href: localizePath(lang, '/contacto/'), label: t('nav.contact') },
+];
+
+const current = Astro.url.pathname;
+const isActive = (href: string) => current === href || current.startsWith(href);
+---
+<header class="sticky top-0 z-40 border-b border-border/70 bg-bg/85 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <a href={localizePath(lang, '/')} class="font-display text-lg font-bold tracking-tight text-ink no-underline">
+      {site.name}<span class="text-accent">.</span>
+    </a>
+
+    <nav aria-label={t('nav.main')} class="flex items-center gap-1">
+      <ul id="nav-links" class="hidden items-center gap-1 md:flex">
+        {links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+              class:list={[
+                'rounded-full px-3 py-2 text-[0.95rem] font-medium no-underline transition-colors hover:bg-accent-soft hover:text-ink',
+                isActive(l.href) ? 'text-accent' : 'text-muted',
+              ]}
+            >{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <slot name="actions" />
+      <ThemeToggle label={t('theme.toggle')} />
+      <button
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t('nav.menu')}
+        class="inline-flex size-10 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-ink md:hidden cursor-pointer"
+      >
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <div id="mobile-menu" hidden class="border-t border-border bg-bg md:hidden">
+    <ul class="mx-auto flex max-w-6xl flex-col px-4 py-2">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            aria-current={isActive(l.href) ? 'page' : undefined}
+            class:list={['block rounded-lg px-3 py-3 font-medium no-underline hover:bg-accent-soft', isActive(l.href) ? 'text-accent' : 'text-ink']}
+          >{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    if (!menu) return;
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.hidden = open;
+  });
+</script>

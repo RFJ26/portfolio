@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Services from '../components/home/Services.astro';
+import CallToAction from '../components/home/CallToAction.astro';
+import { services } from '../data/services';
+import { localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = (path: string) => localizePath(lang, path);
+
+const copy = {
+  pt: {
+    description: 'Programador web júnior no Algarve. Desenvolvo sites rápidos e acessíveis para comércio local e trabalho numa empresa de software.',
+    eyebrow: 'Disponível para novos projetos no Algarve',
+    title: 'Sites rápidos e claros para <span class="text-accent">negócios locais</span>.',
+    intro: 'Sou o Romeu, programador júnior numa empresa de software e estudante do CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve. Nas horas livres crio sites para o comércio local.',
+    primary: 'Ver projetos',
+    secondary: 'Falar comigo',
+    servicesEyebrow: 'Serviços',
+    servicesTitle: 'Como posso ajudar',
+    servicesIntro: 'Do primeiro site à manutenção do dia a dia, com foco em performance, acessibilidade e simplicidade.',
+    ctaTitle: 'Tem um projeto em mente?',
+    ctaText: 'Conte-me o que precisa. Respondo normalmente em 24 horas.',
+    cta: 'Pedir orçamento',
+  },
+}[lang];
+---
+<BaseLayout lang={lang} description={copy.description}>
+  <Hero
+    eyebrow={copy.eyebrow}
+    title={copy.title}
+    intro={copy.intro}
+    primary={{ href: p('/projetos/'), label: copy.primary }}
+    secondary={{ href: p('/contacto/'), label: copy.secondary }}
+  />
+  <slot name="featured" />
+  <Services eyebrow={copy.servicesEyebrow} title={copy.servicesTitle} intro={copy.servicesIntro} items={services[lang]} />
+  <CallToAction title={copy.ctaTitle} text={copy.ctaText} cta={{ href: p('/contacto/'), label: copy.cta }} />
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+
+interface Props { title: string; text: string; cta: { href: string; label: string } }
+const { title, text, cta } = Astro.props;
+---
+<section class="py-10">
+  <Container>
+    <div class="flex flex-col items-start gap-6 rounded-3xl bg-ink px-6 py-12 text-bg sm:px-12 md:flex-row md:items-center md:justify-between">
+      <div class="max-w-xl">
+        <h2 class="text-3xl font-bold text-bg">{title}</h2>
+        <p class="mt-3 text-bg/80">{text}</p>
+      </div>
+      <Button href={cta.href}>{cta.label}</Button>
+    </div>
+  </Container>
+</section>

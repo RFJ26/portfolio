@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* O tema escuro é controlado pelo atributo data-theme no <html>. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --c-bg: #faf8f5;
+  --c-surface: #ffffff;
+  --c-ink: #1a1d21;
+  --c-muted: #5b6168;
+  --c-border: #e5e1da;
+  --c-accent: #b4532a;
+  --c-accent-hover: #9a4423;
+  --c-accent-soft: #f6e6dd;
+  --c-on-accent: #ffffff;
+  --c-sea: #1f5f7a;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --c-bg: #111315;
+  --c-surface: #1a1d20;
+  --c-ink: #eceae6;
+  --c-muted: #a1a6ac;
+  --c-border: #2a2e33;
+  --c-accent: #e07a4f;
+  --c-accent-hover: #ea946f;
+  --c-accent-soft: #3a2419;
+  --c-on-accent: #111315;
+  --c-sea: #6fb3c9;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-border: var(--c-border);
+  --color-accent: var(--c-accent);
+  --color-accent-hover: var(--c-accent-hover);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-on-accent: var(--c-on-accent);
+  --color-sea: var(--c-sea);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  a { @apply underline-offset-4; }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--c-accent-soft);
+    color: var(--c-ink);
+  }
+}
+
+@layer components {
+  .prose-project {
+    @apply max-w-[68ch] text-ink;
+  }
+  .prose-project h2 { @apply mt-10 mb-3 text-2xl font-bold; }
+  .prose-project h3 { @apply mt-8 mb-2 text-xl font-semibold; }
+  .prose-project p { @apply my-4; }
+  .prose-project ul { @apply my-4 list-disc pl-6 space-y-1; }
+  .prose-project ol { @apply my-4 list-decimal pl-6 space-y-1; }
+  .prose-project a { @apply text-accent underline hover:text-accent-hover; }
+  .prose-project strong { @apply font-semibold; }
+  .prose-project code {
+    @apply font-mono text-[0.9em] bg-accent-soft rounded px-1.5 py-0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

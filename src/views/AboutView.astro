@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Tag from '../components/ui/Tag.astro';
+import Button from '../components/ui/Button.astro';
+import { localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const copy = {
+  pt: {
+    title: 'Sobre mim',
+    description: 'Quem sou, o que faço e com que tecnologias trabalho.',
+    eyebrow: 'Sobre',
+    intro: 'Programador júnior no Algarve, entre o trabalho numa empresa de software, os estudos na UAlg e os sites que faço para o comércio local.',
+    body: [
+      'Comecei a programar por curiosidade e rapidamente percebi que gosto de construir coisas que as pessoas usam todos os dias. Hoje trabalho numa empresa de software, onde aprendo a desenvolver em equipa, com revisão de código e processos a sério.',
+      'Fora do horário de trabalho ajudo negócios da região (restaurantes, barbearias, livrarias, alojamentos locais) a ter um site rápido, acessível e fácil de manter. Gosto de projetos em que consigo falar diretamente com quem vai usar o resultado.',
+      'Em paralelo frequento o CTeSP em Sistemas e Tecnologias de Informação na Universidade do Algarve.',
+    ],
+    timelineTitle: 'Percurso',
+    timeline: [
+      { when: 'Atual', what: 'Programador júnior', where: 'Empresa de software, Algarve' },
+      { when: 'Atual', what: 'CTeSP em Sistemas e Tecnologias de Informação', where: 'Universidade do Algarve' },
+      { when: 'Freelance', what: 'Sites para comércio local', where: 'Algarve' },
+    ],
+    skillsTitle: 'Tecnologias',
+    cta: 'Ver projetos',
+  },
+}[lang];
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Astro', 'Tailwind CSS', 'React', 'Node.js', 'PHP', 'MySQL', 'Git', 'Figma'];
+---
+<BaseLayout lang={lang} title={copy.title} description={copy.description}>
+  <Container class="py-16 sm:py-24">
+    <SectionHeading as="h1" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} />
+    <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+      <div class="prose-project">
+        {copy.body.map((para) => <p>{para}</p>)}
+      </div>
+      <aside class="space-y-10">
+        <section>
+          <h2 class="text-xl font-bold">{copy.timelineTitle}</h2>
+          <ol class="mt-4 space-y-4 border-l border-border pl-5">
+            {copy.timeline.map((item) => (
+              <li class="relative">
+                <span class="absolute -left-[1.6rem] top-2 size-2.5 rounded-full bg-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-wider text-muted">{item.when}</p>
+                <p class="font-semibold">{item.what}</p>
+                <p class="text-sm text-muted">{item.where}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold">{copy.skillsTitle}</h2>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {skills.map((s) => <li><Tag>{s}</Tag></li>)}
+          </ul>
+        </section>
+        <Button href={localizePath(lang, '/projetos/')}>{copy.cta}</Button>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>
