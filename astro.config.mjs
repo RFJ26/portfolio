@@ -3,8 +3,11 @@ import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// TODO: define SITE_URL na Vercel (ou troca o valor por defeito) quando tiveres domínio.
-const SITE_URL = process.env.SITE_URL ?? 'https://romeu-portfolio.vercel.app';
+// URL público: SITE_URL (domínio próprio) > domínio de produção que a Vercel fornece > valor por defeito.
+const SITE_URL =
+  process.env.SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+  'https://romeu-portfolio.vercel.app';
 
 // https://astro.build/config
 export default defineConfig({
