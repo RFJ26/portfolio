@@ -78,24 +78,37 @@ function validar(nome) {
   return !erro;
 }
 
-function mensagemWhatsApp(dados) {
-  // Data por extenso, sempre em português, para a equipa
+/**
+ * Mensagem de reserva para o WhatsApp, sempre em português (é lida pela equipa).
+ * Função pura, para poder ser testada: não lê o DOM nem o estado do módulo.
+ *
+ * @param {{ nome: string, data: string, hora: string, pessoas: string|number, observacoes?: string }} dados
+ * @param {{ restaurante: string, idioma: 'pt'|'en'|'es' }} contexto
+ */
+export function formatarMensagem(dados, { restaurante, idioma: lang }) {
+  // Data por extenso ("sábado, 21 de novembro"), calculada em UTC para não depender do fuso
   const [a, m, d] = dados.data.split('-').map(Number);
   const dataLonga = new Intl.DateTimeFormat('pt-PT', {
     weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC',
   }).format(new Date(Date.UTC(a, m - 1, d)));
 
   const linhas = [
-    `*Pedido de reserva · ${info.nome}*`,
+    `*Pedido de reserva · ${restaurante}*`,
     '',
-    `*Nome:* ${dados.nome}`,
+    `*Nome:* ${dados.nome.trim()}`,
     `*Data:* ${dataLonga}`,
     `*Hora:* ${dados.hora}`,
     `*Pessoas:* ${dados.pessoas}`,
   ];
-  if (dados.observacoes) linhas.push(`*Observações:* ${dados.observacoes}`);
-  linhas.push(`*Idioma do cliente:* ${NOMES_IDIOMA[idioma()]}`);
+  const obs = dados.observacoes?.trim();
+  if (obs) linhas.push(`*Observações:* ${obs}`);
+  linhas.push(`*Idioma do cliente:* ${NOMES_IDIOMA[lang] ?? NOMES_IDIOMA.pt}`);
   return linhas.join('\n');
+}
+
+/** Link wa.me com a mensagem codificada (só dígitos no número, como pede o WhatsApp). */
+export function urlWhatsApp(numero, mensagem) {
+  return `https://wa.me/${String(numero).replace(/\D/g, '')}?text=${encodeURIComponent(mensagem)}`;
 }
 
 function aoSubmeter(e) {
@@ -113,7 +126,7 @@ function aoSubmeter(e) {
   }
 
   const dados = Object.fromEntries(ordem.map((n) => [n, campos[n].value.trim()]));
-  const url = `https://wa.me/${info.whatsapp}?text=${encodeURIComponent(mensagemWhatsApp(dados))}`;
+  const url = urlWhatsApp(info.whatsapp, formatarMensagem(dados, { restaurante: info.nome, idioma: idioma() }));
   const janela = window.open(url, '_blank', 'noopener');
 
   // Mostra sempre um link, caso o browser tenha bloqueado a nova janela

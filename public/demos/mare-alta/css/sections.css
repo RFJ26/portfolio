@@ -643,7 +643,8 @@
 .campo [aria-invalid="true"] { border-color: var(--fechado); }
 .campo [aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgb(179 38 30 / 0.18); }
 
-.campo__ajuda { color: var(--tinta-suave); font-size: var(--fs-xs); min-height: 1em; }
+.campo__ajuda { color: var(--tinta-suave); font-size: var(--fs-xs); }
+.campo__ajuda:empty { display: none; }
 .campo__ajuda::first-letter { text-transform: uppercase; }
 
 .campo__erro {

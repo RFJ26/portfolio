@@ -13,6 +13,8 @@ fi
 
 mkdir -p "$DESTINO"
 rsync -a --delete \
-  --exclude '.git' --exclude '.gitignore' --exclude '.claude' --exclude '.DS_Store' --exclude 'README.md' \
+  --exclude '.git' --exclude '.gitignore' --exclude '.github' --exclude '.claude' --exclude '.DS_Store' \
+  --exclude 'README.md' --exclude 'docs' --exclude 'tests' --exclude 'node_modules' \
+  --exclude 'package.json' --exclude 'package-lock.json' \
   "$ORIGEM/" "$DESTINO/"
 echo "Maré Alta copiado para public/demos/mare-alta ($(find "$DESTINO" -type f | wc -l | tr -d ' ') ficheiros)"
