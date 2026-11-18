@@ -15,7 +15,6 @@ Personal portfolio of Romeu, a web developer based in the Algarve, Portugal, and
 - Dark theme by default, with a light theme saved in `localStorage`
 - Contact form via Formspree, with client-side validation
 - SEO: meta tags, Open Graph, sitemap, `robots.txt` and `Person` JSON-LD
-- Static project demos served from the same deploy (`/demos/...`)
 - Lighthouse 99–100 in every category, on mobile and desktop
 
 ## Stack
@@ -46,7 +45,6 @@ npm run dev            # http://localhost:4321
 | `npm run build` | Builds the static site into `dist/` |
 | `npm run preview` | Serves `dist/` locally |
 | `npm run check` | Type-checks the project (`astro check`) |
-| `npm run sync:demos` | Copies the Maré Alta demo from `../mare-alta` into `public/demos/` |
 
 ### Environment variables
 
@@ -68,7 +66,7 @@ Adding a project only takes one Markdown file. No code changes needed.
    stack: [Astro, Tailwind CSS]
    category: comercio-local      # comercio-local | profissional | academico | pessoal
    repoUrl: https://github.com/RFJ26/my-project   # optional
-   liveUrl: https://my-project.vercel.app         # optional; can also be /demos/<name>/
+   liveUrl: https://my-project.vercel.app         # optional
    cover: ../../assets/projects/<slug>/cover.webp
    coverAlt: What the cover image shows
    gallery:                      # optional
@@ -87,10 +85,6 @@ Adding a project only takes one Markdown file. No code changes needed.
 
 If a required field is missing or has the wrong type, `npm run build` stops with a clear error.
 
-### Static demos
-
-Static sites (HTML, CSS and JavaScript) can be served by the portfolio itself from `public/demos/<name>/`, using `liveUrl: /demos/<name>/`. The Maré Alta demo lives in its own repository next to this one; after changing it, run `npm run sync:demos` and commit.
-
 ## Project structure
 
 ```
@@ -104,7 +98,6 @@ src/
 ├── i18n/                  # UI strings, categories, URL translation
 ├── data/                  # site details and services
 └── styles/global.css      # Tailwind, colour tokens, components
-public/demos/              # static project demos
 ```
 
 ## Deploy

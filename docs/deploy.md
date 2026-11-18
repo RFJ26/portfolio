@@ -35,6 +35,6 @@ Every push to `main` deploys to production. Every other branch or pull request g
 ## Checklist after the first deploy
 
 - [ ] The home page, `/projetos/`, `/en/` and a project page open without errors
-- [ ] `/demos/mare-alta/` opens and the menu loads
+- [ ] The "Ver demo" button on the Maré Alta project opens https://rfj26.github.io/mare-alta/
 - [ ] The contact form sends a test message
 - [ ] `https://<domain>/robots.txt` points to the sitemap on the right domain

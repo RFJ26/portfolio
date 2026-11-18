@@ -10,8 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
-    "sync:demos": "sh scripts/sync-demos.sh"
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.5",
