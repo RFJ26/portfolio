@@ -1,0 +1,175 @@
+{
+  "moeda": "EUR",
+  "categorias": ["entradas", "mariscos", "peixe", "cataplanas", "sobremesas"],
+  "alergenos": [
+    "gluten", "crustaceos", "ovos", "peixe", "amendoins", "soja", "leite",
+    "frutos_casca_rija", "aipo", "mostarda", "sesamo", "sulfitos", "tremoco", "moluscos"
+  ],
+  "pratos": [
+    {
+      "id": "pao-azeitonas",
+      "categoria": "entradas",
+      "nome": { "pt": "Pão caseiro, azeitonas e manteiga de alho", "en": "Homemade bread, olives and garlic butter", "es": "Pan casero, aceitunas y mantequilla de ajo" },
+      "descricao": { "pt": "Pão de forno a lenha com azeitonas temperadas com oregãos.", "en": "Wood-fired bread with olives dressed with oregano.", "es": "Pan de horno de leña con aceitunas aliñadas con orégano." },
+      "preco": 3.5,
+      "alergenos": ["gluten", "leite"],
+      "tags": ["vegetariano"]
+    },
+    {
+      "id": "ameijoas-bulhao-pato",
+      "categoria": "entradas",
+      "nome": { "pt": "Amêijoas à Bulhão Pato", "en": "Bulhão Pato clams", "es": "Almejas a la Bulhão Pato" },
+      "descricao": { "pt": "Amêijoa da Ria Formosa com alho, coentros, azeite e limão.", "en": "Ria Formosa clams with garlic, coriander, olive oil and lemon.", "es": "Almeja de la Ria Formosa con ajo, cilantro, aceite y limón." },
+      "preco": 16.5,
+      "alergenos": ["moluscos"],
+      "tags": ["chef", "partilhar"]
+    },
+    {
+      "id": "polvo-salada",
+      "categoria": "entradas",
+      "nome": { "pt": "Salada de polvo", "en": "Octopus salad", "es": "Ensalada de pulpo" },
+      "descricao": { "pt": "Polvo cozido, cebola roxa, pimento e vinagrete de salsa.", "en": "Boiled octopus, red onion, pepper and parsley vinaigrette.", "es": "Pulpo cocido, cebolla morada, pimiento y vinagreta de perejil." },
+      "preco": 11,
+      "alergenos": ["moluscos", "sulfitos"],
+      "tags": ["partilhar"]
+    },
+    {
+      "id": "pasteis-bacalhau",
+      "categoria": "entradas",
+      "nome": { "pt": "Pastéis de bacalhau", "en": "Salt cod fritters", "es": "Buñuelos de bacalao" },
+      "descricao": { "pt": "Seis pastéis feitos na casa, com salada de feijão-frade.", "en": "Six homemade fritters with black-eyed bean salad.", "es": "Seis buñuelos caseros con ensalada de alubias carillas." },
+      "preco": 8.5,
+      "alergenos": ["peixe", "ovos", "gluten"],
+      "tags": []
+    },
+    {
+      "id": "ostras",
+      "categoria": "mariscos",
+      "nome": { "pt": "Ostras da Ria Formosa", "en": "Ria Formosa oysters", "es": "Ostras de la Ria Formosa" },
+      "descricao": { "pt": "Ao natural, com limão e molho de chalota.", "en": "Served raw with lemon and shallot dressing.", "es": "Al natural, con limón y salsa de chalota." },
+      "preco": 2.8,
+      "unidade": "un",
+      "alergenos": ["moluscos", "sulfitos"],
+      "tags": ["chef"]
+    },
+    {
+      "id": "camarao-tigre",
+      "categoria": "mariscos",
+      "nome": { "pt": "Camarão-tigre grelhado", "en": "Grilled tiger prawns", "es": "Langostinos tigre a la plancha" },
+      "descricao": { "pt": "Grelhado na brasa com manteiga de alho e piri-piri.", "en": "Chargrilled with garlic and piri-piri butter.", "es": "A la brasa con mantequilla de ajo y piri-piri." },
+      "preco": 68,
+      "unidade": "kg",
+      "alergenos": ["crustaceos", "leite"],
+      "tags": ["picante", "mercado"]
+    },
+    {
+      "id": "gamba-algarvia",
+      "categoria": "mariscos",
+      "nome": { "pt": "Gamba da costa cozida", "en": "Boiled Algarve red shrimp", "es": "Gamba de la costa cocida" },
+      "descricao": { "pt": "Gamba do Algarve cozida em água do mar, servida fria.", "en": "Algarve red shrimp boiled in seawater, served cold.", "es": "Gamba del Algarve cocida en agua de mar, servida fría." },
+      "preco": 85,
+      "unidade": "kg",
+      "alergenos": ["crustaceos"],
+      "tags": ["mercado"]
+    },
+    {
+      "id": "mariscada",
+      "categoria": "mariscos",
+      "nome": { "pt": "Mariscada Maré Alta (2 pessoas)", "en": "Maré Alta seafood platter (for 2)", "es": "Mariscada Maré Alta (2 personas)" },
+      "descricao": { "pt": "Sapateira, gamba, camarão, ostras, amêijoas e berbigão.", "en": "Brown crab, red shrimp, prawns, oysters, clams and cockles.", "es": "Buey de mar, gamba, langostino, ostras, almejas y berberechos." },
+      "preco": 79,
+      "alergenos": ["crustaceos", "moluscos", "sulfitos"],
+      "tags": ["chef", "partilhar"]
+    },
+    {
+      "id": "sapateira-recheada",
+      "categoria": "mariscos",
+      "nome": { "pt": "Sapateira recheada", "en": "Dressed brown crab", "es": "Buey de mar relleno" },
+      "descricao": { "pt": "Recheio de sapateira com mostarda, ovo e pickles, com tostas.", "en": "Crab meat dressed with mustard, egg and pickles, with toast.", "es": "Relleno de buey con mostaza, huevo y encurtidos, con tostas." },
+      "preco": 24,
+      "alergenos": ["crustaceos", "ovos", "mostarda", "gluten"],
+      "tags": []
+    },
+    {
+      "id": "dourada",
+      "categoria": "peixe",
+      "nome": { "pt": "Dourada grelhada", "en": "Grilled sea bream", "es": "Dorada a la brasa" },
+      "descricao": { "pt": "Com batata cozida, legumes salteados e molho verde.", "en": "With boiled potatoes, sautéed vegetables and green sauce.", "es": "Con patata cocida, verduras salteadas y salsa verde." },
+      "preco": 19.5,
+      "alergenos": ["peixe"],
+      "tags": []
+    },
+    {
+      "id": "polvo-lagareiro",
+      "categoria": "peixe",
+      "nome": { "pt": "Polvo à lagareiro", "en": "Roasted octopus “à lagareiro”", "es": "Pulpo a la lagareira" },
+      "descricao": { "pt": "Polvo assado no forno com batata a murro e azeite de alho.", "en": "Oven-roasted octopus with crushed potatoes and garlic olive oil.", "es": "Pulpo asado al horno con patatas machacadas y aceite de ajo." },
+      "preco": 22,
+      "alergenos": ["moluscos"],
+      "tags": ["chef"]
+    },
+    {
+      "id": "arroz-lingueirao",
+      "categoria": "peixe",
+      "nome": { "pt": "Arroz de lingueirão", "en": "Razor clam rice", "es": "Arroz de navajas" },
+      "descricao": { "pt": "Arroz malandrinho com lingueirão, tomate e coentros.", "en": "Soupy rice with razor clams, tomato and coriander.", "es": "Arroz meloso con navajas, tomate y cilantro." },
+      "preco": 21,
+      "alergenos": ["moluscos", "aipo"],
+      "tags": ["partilhar"]
+    },
+    {
+      "id": "atum-tataki",
+      "categoria": "peixe",
+      "nome": { "pt": "Tataki de atum de Olhão", "en": "Olhão tuna tataki", "es": "Tataki de atún de Olhão" },
+      "descricao": { "pt": "Atum braseado, sésamo, molho de soja e lima.", "en": "Seared tuna, sesame, soy sauce and lime.", "es": "Atún sellado, sésamo, salsa de soja y lima." },
+      "preco": 18,
+      "alergenos": ["peixe", "sesamo", "soja", "gluten"],
+      "tags": []
+    },
+    {
+      "id": "cataplana-mista",
+      "categoria": "cataplanas",
+      "nome": { "pt": "Cataplana de peixe e marisco (2 pessoas)", "en": "Fish and seafood cataplana (for 2)", "es": "Cataplana de pescado y marisco (2 personas)" },
+      "descricao": { "pt": "Tamboril, amêijoa, camarão, pimento e batata, no cobre.", "en": "Monkfish, clams, prawns, peppers and potato, cooked in copper.", "es": "Rape, almeja, langostino, pimiento y patata, en cobre." },
+      "preco": 48,
+      "alergenos": ["peixe", "crustaceos", "moluscos", "sulfitos"],
+      "tags": ["chef", "partilhar"]
+    },
+    {
+      "id": "cataplana-ameijoas",
+      "categoria": "cataplanas",
+      "nome": { "pt": "Cataplana de amêijoas com presunto", "en": "Clam and cured ham cataplana", "es": "Cataplana de almejas con jamón" },
+      "descricao": { "pt": "A receita algarvia clássica, com chouriço e presunto.", "en": "The classic Algarve recipe, with chouriço and cured ham.", "es": "La receta algarvia clásica, con chorizo y jamón." },
+      "preco": 38,
+      "alergenos": ["moluscos", "sulfitos"],
+      "tags": ["picante", "partilhar"]
+    },
+    {
+      "id": "dom-rodrigo",
+      "categoria": "sobremesas",
+      "nome": { "pt": "Dom Rodrigo", "en": "Dom Rodrigo", "es": "Dom Rodrigo" },
+      "descricao": { "pt": "Doce conventual algarvio de ovos e amêndoa.", "en": "Algarve convent sweet made with egg yolk and almond.", "es": "Dulce conventual algarvío de yema y almendra." },
+      "preco": 4.5,
+      "alergenos": ["ovos", "frutos_casca_rija"],
+      "tags": ["vegetariano"]
+    },
+    {
+      "id": "torta-alfarroba",
+      "categoria": "sobremesas",
+      "nome": { "pt": "Torta de alfarroba e laranja", "en": "Carob and orange roll", "es": "Brazo de algarroba y naranja" },
+      "descricao": { "pt": "Com laranja do Algarve e chantilly.", "en": "With Algarve orange and whipped cream.", "es": "Con naranja del Algarve y nata montada." },
+      "preco": 5,
+      "alergenos": ["ovos", "leite", "gluten"],
+      "tags": ["vegetariano"]
+    },
+    {
+      "id": "fruta-epoca",
+      "categoria": "sobremesas",
+      "nome": { "pt": "Fruta da época", "en": "Seasonal fruit", "es": "Fruta de temporada" },
+      "descricao": { "pt": "Fruta fresca do mercado de Olhão.", "en": "Fresh fruit from Olhão market.", "es": "Fruta fresca del mercado de Olhão." },
+      "preco": 3.5,
+      "alergenos": [],
+      "tags": ["vegetariano"]
+    }
+  ]
+}

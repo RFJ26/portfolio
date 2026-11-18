@@ -1,0 +1,32 @@
+{
+  "nome": "Maré Alta",
+  "ficticio": true,
+  "telefone": "+351 289 000 000",
+  "whatsapp": "351000000000",
+  "email": "reservas@mare-alta.example",
+  "morada": {
+    "rua": "Avenida 5 de Outubro, 120",
+    "codigoPostal": "8700-307",
+    "localidade": "Olhão",
+    "regiao": "Faro",
+    "pais": "PT"
+  },
+  "coordenadas": { "lat": 37.0262, "lng": -7.8412 },
+  "fusoHorario": "Europe/Lisbon",
+  "horario": {
+    "seg": [],
+    "ter": [["12:00", "15:30"], ["19:00", "23:00"]],
+    "qua": [["12:00", "15:30"], ["19:00", "23:00"]],
+    "qui": [["12:00", "15:30"], ["19:00", "23:00"]],
+    "sex": [["12:00", "15:30"], ["19:00", "00:30"]],
+    "sab": [["12:00", "16:00"], ["19:00", "00:30"]],
+    "dom": [["12:00", "16:00"], ["19:00", "22:30"]]
+  },
+  "reservas": {
+    "antecedenciaMinutos": 60,
+    "ultimaReservaAntesDeFechar": 60,
+    "intervaloMinutos": 30,
+    "maxPessoas": 12,
+    "diasMaximos": 60
+  }
+}

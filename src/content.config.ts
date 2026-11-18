@@ -14,7 +14,8 @@ const projects = defineCollection({
       stack: z.array(z.string()).min(1),
       category: z.enum(categories),
       repoUrl: z.url().optional(),
-      liveUrl: z.url().optional(),
+      // URL completo ou caminho interno, por exemplo /demos/mare-alta/ (ficheiros em public/demos)
+      liveUrl: z.union([z.url(), z.string().regex(/^\/[\w\-/.]*$/)]).optional(),
       cover: image(),
       coverAlt: z.string().optional(),
       gallery: z.array(z.object({ src: image(), alt: z.string() })).default([]),

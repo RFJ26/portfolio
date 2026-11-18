@@ -1,0 +1,55 @@
+/* Design tokens: tudo o que é cor, tipo e espaço vive aqui. */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/fraunces.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("../assets/fonts/work-sans.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Cores: Ria Formosa, mercados de Olhão, marisco */
+  --mar: #0f2f45;
+  --mar-claro: #1c4561;
+  --ria: #1f7a74;
+  --ria-escuro: #17615c;
+  --coral: #e0603a;
+  --coral-escuro: #c24a26;
+  --tijolo: #a8432a;
+  --areia: #f6efe3;
+  --areia-escura: #ece2d0;
+  --espuma: #fffdf8;
+  --tinta: #1d2a33;
+  --tinta-suave: #4c5a64;
+  --linha: #e2d7c3;
+  --fechado: #b3261e;
+
+  /* Tipografia */
+  --font-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-texto: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
+  --fs-2xl: clamp(2.1rem, 1.4rem + 3vw, 3.25rem);
+  --fs-hero: clamp(2.8rem, 1.6rem + 6vw, 5.5rem);
+
+  /* Espaço e forma */
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --secao: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --largura: 72rem;
+  --raio: 14px;
+  --raio-sm: 8px;
+  --sombra: 0 18px 40px -24px rgb(15 47 69 / 0.45);
+  --header-h: 4.25rem;
+}

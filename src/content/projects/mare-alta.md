@@ -4,6 +4,7 @@ summary: Site de uma página para uma marisqueira fictícia, só em HTML, CSS e 
 stack: [HTML, CSS, JavaScript]
 category: comercio-local
 repoUrl: https://github.com/RFJ26/mare-alta
+liveUrl: /demos/mare-alta/
 cover: ../../assets/projects/mare-alta/cover.webp
 coverAlt: Página inicial do Maré Alta com o título "Marisco da ria, à mesa em Olhão" e o indicador "Aberto agora"
 gallery:

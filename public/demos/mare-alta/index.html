@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maré Alta · Marisqueira em Olhão, Algarve</title>
+  <meta name="description" content="Marisqueira em Olhão, junto à Ria Formosa. Marisco fresco, peixe grelhado e cataplanas. Reserve mesa pelo WhatsApp.">
+  <meta name="theme-color" content="#0f2f45">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fontes e imagem principal carregadas cedo para um LCP rápido -->
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/work-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/hero-1600.webp" imagesrcset="assets/img/hero-900.webp 900w, assets/img/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+
+  <!-- Dados estruturados (schema.org/Restaurant). Gerados a partir de data/info.json; manter em sincronia. -->
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Maré Alta",
+    "description": "Marisqueira em Olhão, junto à Ria Formosa. Restaurante fictício criado como projeto de portefólio.",
+    "url": "https://mare-alta.example/",
+    "image": [
+      "https://mare-alta.example/assets/img/hero-1600.webp",
+      "https://mare-alta.example/assets/img/galeria-mariscada-1200.webp"
+    ],
+    "telephone": "+351289000000",
+    "email": "reservas@mare-alta.example",
+    "servesCuisine": [
+      "Marisco",
+      "Peixe",
+      "Cozinha algarvia"
+    ],
+    "priceRange": "€€",
+    "acceptsReservations": true,
+    "menu": "https://mare-alta.example/#menu",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenida 5 de Outubro, 120",
+      "postalCode": "8700-307",
+      "addressLocality": "Olhão",
+      "addressRegion": "Faro",
+      "addressCountry": "PT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.0262,
+      "longitude": -7.8412
+    },
+    "hasMap": "https://www.openstreetmap.org/?mlat=37.0262&mlon=-7.8412#map=18/37.0262/-7.8412",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "12:00",
+        "closes": "15:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "opens": "19:00",
+        "closes": "23:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "19:00",
+        "closes": "00:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "12:00",
+        "closes": "16:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Sunday"
+        ],
+        "opens": "19:00",
+        "closes": "22:30"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo" data-i18n="skip">Saltar para o conteúdo</a>
+
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a class="logo" href="#topo" aria-label="Maré Alta, início">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 13c3.5-4 6.5-4 10 0s6.5 4 10 0 4.5-3 6-2"/>
+          <path d="M3 21c3.5-4 6.5-4 10 0s6.5 4 10 0 4.5-3 6-2"/>
+        </svg>
+        Maré Alta
+      </a>
+
+      <nav class="nav" aria-label="Principal" data-i18n-attr="aria-label:nav.label">
+        <ul class="nav__lista" id="nav-lista" data-nav-lista>
+          <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+          <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+          <li><a href="#galeria" data-i18n="nav.galeria">Galeria</a></li>
+          <li><a href="#reservas" data-i18n="nav.reservas">Reservas</a></li>
+          <li><a href="#horario" data-i18n="nav.horario">Horário</a></li>
+        </ul>
+
+        <div class="idiomas" role="group" aria-label="Idioma" data-i18n-attr="aria-label:nav.idioma">
+          <button type="button" data-lang="pt" aria-pressed="true" lang="pt-PT" title="Português">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+          <button type="button" data-lang="es" aria-pressed="false" lang="es" title="Español">ES</button>
+        </div>
+
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-lista" aria-label="Abrir menu" data-nav-toggle data-i18n-attr="aria-label:nav.abrir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero" id="topo" aria-labelledby="hero-titulo">
+      <img class="hero__img"
+           src="assets/img/hero-1600.webp"
+           srcset="assets/img/hero-900.webp 900w, assets/img/hero-1600.webp 1600w"
+           sizes="100vw" width="1600" height="1000"
+           alt="" fetchpriority="high" decoding="async">
+      <div class="container hero__conteudo">
+        <p class="hero__local" data-i18n="hero.local">Olhão · Ria Formosa · Algarve</p>
+        <p class="estado estado--hero" data-estado hidden></p>
+        <h1 class="hero__titulo" id="hero-titulo" data-i18n-html="hero.titulo">Marisco da ria, <em>à mesa</em> em Olhão</h1>
+        <p class="hero__texto" data-i18n="hero.texto">Amêijoas, ostras e peixe que chegam todas as manhãs do mercado ao lado. Cozinha algarvia, sem pressas, com vista para a ria.</p>
+        <div class="hero__acoes">
+          <a class="btn btn--primario" href="#reservas" data-i18n="hero.reservar">Reservar mesa</a>
+          <a class="btn btn--contorno" href="#menu" data-i18n="hero.menu">Ver menu</a>
+        </div>
+      </div>
+      <svg class="hero__onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="currentColor" d="M0 50c120 30 240 30 360 0s240-30 360 0 240 30 360 0 240-30 360 0v40H0z"/>
+      </svg>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="secao sobre" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container sobre__grelha">
+        <figure class="sobre__figura">
+          <img src="assets/img/sobre-900.webp"
+               srcset="assets/img/sobre-450.webp 450w, assets/img/sobre-900.webp 900w"
+               sizes="(min-width: 768px) 40vw, 90vw" width="900" height="1100"
+               alt="Cataplana de amêijoas acabada de sair do lume" data-i18n-attr="alt:sobre.img_alt"
+               loading="lazy" decoding="async">
+          <figcaption class="sobre__selo">
+            <span class="sobre__selo-ano">1987</span>
+            <span data-i18n="sobre.desde">à beira da ria</span>
+          </figcaption>
+        </figure>
+
+        <div class="sobre__texto">
+          <p class="secao__sobretitulo" data-i18n="sobre.sobretitulo">A nossa casa</p>
+          <h2 class="secao__titulo" id="sobre-titulo" data-i18n="sobre.titulo">Uma família, uma ria e o marisco do dia</h2>
+          <p class="secao__intro" data-i18n="sobre.p1">O Maré Alta abriu em 1987, a dois passos dos mercados de Olhão. Começou como tasca de pescadores e continua a ser gerido pela mesma família.</p>
+          <p data-i18n="sobre.p2">Todas as manhãs escolhemos o marisco e o peixe na lota. O que não está fresco não entra na cozinha, por isso o menu muda com a maré e a estação.</p>
+
+          <ul class="sobre__destaques">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 3-2M3 10c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 3-2"/></svg>
+              <div><h3 data-i18n="sobre.d1_t">Da lota para a mesa</h3><p data-i18n="sobre.d1_p">Marisco e peixe comprados todas as manhãs.</p></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+              <div><h3 data-i18n="sobre.d2_t">Esplanada sobre a ria</h3><p data-i18n="sobre.d2_p">Pôr do sol com vista para as ilhas da Armona e Culatra.</p></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0zM12 3v4M8 5v2M16 5v2"/></svg>
+              <div><h3 data-i18n="sobre.d3_t">Receitas da casa</h3><p data-i18n="sobre.d3_p">Cataplana, arroz de lingueirão e xerém de amêijoa.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="secao menu" id="menu" aria-labelledby="menu-titulo" data-menu>
+      <div class="container">
+        <div class="secao__topo">
+          <p class="secao__sobretitulo" data-i18n="menu.sobretitulo">Da ria para o prato</p>
+          <h2 class="secao__titulo" id="menu-titulo" data-i18n="menu.titulo">Menu</h2>
+          <p class="secao__intro" data-i18n="menu.intro">O marisco ao quilo é pesado à sua frente. Os preços incluem IVA.</p>
+        </div>
+
+        <div class="menu__filtros">
+          <div class="menu__grupo">
+            <p class="menu__rotulo" id="rotulo-cat" data-i18n="menu.filtro_cat">Categoria</p>
+            <div class="menu__categorias" role="group" aria-labelledby="rotulo-cat" data-menu-categorias></div>
+          </div>
+          <details class="menu__detalhes" data-menu-detalhes>
+            <summary class="menu__resumo-alerg"><span data-i18n="menu.alergias">Filtrar alérgenos</span> <span class="menu__badge" data-menu-badge hidden></span></summary>
+            <fieldset class="menu__grupo">
+              <legend class="menu__rotulo" data-i18n="menu.filtro_alerg">Esconder pratos com</legend>
+              <div class="menu__alergenos" data-menu-alergenos></div>
+            </fieldset>
+          </details>
+          <div class="menu__resumo">
+            <p aria-live="polite" data-menu-estado></p>
+            <button type="button" class="link-botao" data-menu-limpar hidden data-i18n="menu.limpar">Limpar filtros</button>
+          </div>
+        </div>
+
+        <div class="menu__pratos" data-menu-pratos>
+          <noscript><p data-i18n="menu.noscript">Ative o JavaScript para ver o menu, ou peça-o à mesa.</p></noscript>
+        </div>
+        <p class="menu__vazio" data-menu-vazio hidden data-i18n="menu.vazio">Nenhum prato corresponde aos filtros escolhidos.</p>
+
+        <p class="menu__nota" data-i18n="menu.nota">Tem alguma alergia ou intolerância? Fale connosco: a informação sobre alérgenos é indicativa e a cozinha trabalha com todos eles.</p>
+      </div>
+    </section>
+    <!-- GALERIA -->
+    <section class="secao galeria" id="galeria" aria-labelledby="galeria-titulo">
+      <div class="container">
+        <div class="secao__topo">
+          <p class="secao__sobretitulo" data-i18n="galeria.sobretitulo">Olhão à mesa</p>
+          <h2 class="secao__titulo" id="galeria-titulo" data-i18n="galeria.titulo">Galeria</h2>
+        </div>
+        <ul class="galeria__grelha">
+          <li class="galeria__item galeria__item--1">
+            <a href="assets/img/galeria-mariscada-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-mariscada-600.webp"
+                   srcset="assets/img/galeria-mariscada-600.webp 600w, assets/img/galeria-mariscada-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Travessa de camarão cozido" data-i18n-attr="alt:galeria.mariscada">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--2">
+            <a href="assets/img/galeria-ria-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-ria-600.webp"
+                   srcset="assets/img/galeria-ria-600.webp 600w, assets/img/galeria-ria-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Barco à vela na Ria Formosa" data-i18n-attr="alt:galeria.ria">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--3">
+            <a href="assets/img/galeria-cataplana-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-cataplana-600.webp"
+                   srcset="assets/img/galeria-cataplana-600.webp 600w, assets/img/galeria-cataplana-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Cataplana de cobre com amêijoas" data-i18n-attr="alt:galeria.cataplana">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--4">
+            <a href="assets/img/galeria-ameijoas-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-ameijoas-600.webp"
+                   srcset="assets/img/galeria-ameijoas-600.webp 600w, assets/img/galeria-ameijoas-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Prato de amêijoas à Bulhão Pato" data-i18n-attr="alt:galeria.ameijoas">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--5">
+            <a href="assets/img/galeria-esplanada-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-esplanada-600.webp"
+                   srcset="assets/img/galeria-esplanada-600.webp 600w, assets/img/galeria-esplanada-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Esplanada ao pôr do sol sobre a ria" data-i18n-attr="alt:galeria.esplanada">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--6">
+            <a href="assets/img/galeria-ostras-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-ostras-600.webp"
+                   srcset="assets/img/galeria-ostras-600.webp 600w, assets/img/galeria-ostras-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Ostras abertas com limão" data-i18n-attr="alt:galeria.ostras">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--7">
+            <a href="assets/img/galeria-mercado-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-mercado-600.webp"
+                   srcset="assets/img/galeria-mercado-600.webp 600w, assets/img/galeria-mercado-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Mercados de Olhão junto à água" data-i18n-attr="alt:galeria.mercado">
+            </a>
+          </li>
+          <li class="galeria__item galeria__item--8">
+            <a href="assets/img/galeria-peixe-1200.webp" data-galeria-item>
+              <img src="assets/img/galeria-peixe-600.webp"
+                   srcset="assets/img/galeria-peixe-600.webp 600w, assets/img/galeria-peixe-1200.webp 1200w"
+                   sizes="(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw"
+                   width="600" height="450" loading="lazy" decoding="async"
+                   alt="Dourada grelhada com limão" data-i18n-attr="alt:galeria.peixe">
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-legenda">
+        <figure class="lightbox__figura">
+          <img src="" alt="" data-lightbox-img>
+          <figcaption id="lightbox-legenda" class="lightbox__legenda" data-lightbox-legenda></figcaption>
+        </figure>
+        <button type="button" class="lightbox__btn lightbox__btn--fechar" data-lightbox-fechar aria-label="Fechar" data-i18n-attr="aria-label:galeria.fechar">✕</button>
+        <button type="button" class="lightbox__btn lightbox__btn--ant" data-lightbox-ant aria-label="Imagem anterior" data-i18n-attr="aria-label:galeria.anterior">‹</button>
+        <button type="button" class="lightbox__btn lightbox__btn--seg" data-lightbox-seg aria-label="Imagem seguinte" data-i18n-attr="aria-label:galeria.seguinte">›</button>
+      </dialog>
+    </section>
+    <!-- RESERVAS -->
+    <section class="secao reservas" id="reservas" aria-labelledby="reservas-titulo">
+      <div class="container reservas__grelha">
+        <div class="reservas__info">
+          <p class="secao__sobretitulo secao__sobretitulo--claro" data-i18n="reservas.sobretitulo">Reservas</p>
+          <h2 class="secao__titulo" id="reservas-titulo" data-i18n="reservas.titulo">Guarde a sua mesa</h2>
+          <p class="secao__intro" data-i18n="reservas.intro">Preencha o pedido e enviamo-lo pelo WhatsApp. Confirmamos a reserva por mensagem, normalmente em menos de uma hora.</p>
+          <ul class="reservas__notas">
+            <li data-i18n="reservas.nota1">Grupos com mais de 12 pessoas: ligue-nos.</li>
+            <li data-i18n="reservas.nota2">Guardamos a mesa durante 15 minutos.</li>
+            <li data-i18n="reservas.nota3">À segunda-feira estamos fechados.</li>
+          </ul>
+          <p class="reservas__tel"><span data-i18n="reservas.prefere_ligar">Prefere ligar?</span> <a href="tel:+351289000000">+351 289 000 000</a></p>
+        </div>
+
+        <form class="reservas__form" data-reserva novalidate>
+          <noscript><p class="reservas__estado reservas__estado--erro" data-i18n="reservas.noscript">O formulário precisa de JavaScript. Pode reservar pelo telefone +351 289 000 000.</p></noscript>
+
+          <div class="campo campo--largo">
+            <label for="r-nome" data-i18n="reservas.nome">Nome</label>
+            <input id="r-nome" name="nome" type="text" autocomplete="name" required maxlength="80" aria-describedby="erro-nome">
+            <p class="campo__erro" id="erro-nome" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="r-data" data-i18n="reservas.data">Data</label>
+            <input id="r-data" name="data" type="date" required aria-describedby="erro-data r-dia">
+            <p class="campo__ajuda" id="r-dia" data-reserva-dia aria-live="polite"></p>
+            <p class="campo__erro" id="erro-data" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="r-hora" data-i18n="reservas.hora">Hora</label>
+            <select id="r-hora" name="hora" required aria-describedby="erro-hora">
+              <option value="" data-i18n="reservas.hora_escolha_data">Escolha a data</option>
+            </select>
+            <p class="campo__erro" id="erro-hora" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="r-pessoas" data-i18n="reservas.pessoas">Pessoas</label>
+            <input id="r-pessoas" name="pessoas" type="number" inputmode="numeric" min="1" max="20" value="2" required aria-describedby="erro-pessoas">
+            <p class="campo__erro" id="erro-pessoas" hidden></p>
+          </div>
+
+          <div class="campo campo--largo">
+            <label for="r-obs"><span data-i18n="reservas.observacoes">Observações</span> <span class="campo__opcional" data-i18n="reservas.opcional">(opcional)</span></label>
+            <textarea id="r-obs" name="observacoes" rows="3" maxlength="300" aria-describedby="erro-observacoes r-obs-ajuda" placeholder="Alergias, cadeira de bebé, mesa na esplanada…" data-i18n-attr="placeholder:reservas.obs_placeholder"></textarea>
+            <p class="campo__ajuda" id="r-obs-ajuda"><span data-reserva-contador>0/300</span></p>
+            <p class="campo__erro" id="erro-observacoes" hidden></p>
+          </div>
+
+          <div class="campo campo--largo">
+            <button class="btn btn--primario reservas__enviar" type="submit">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+              <span data-i18n="reservas.enviar">Enviar pedido pelo WhatsApp</span>
+            </button>
+            <p class="reservas__estado" data-reserva-estado role="status" aria-live="polite" hidden></p>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- HORÁRIO E LOCALIZAÇÃO -->
+    <section class="secao horario" id="horario" aria-labelledby="horario-titulo">
+      <div class="container horario__grelha">
+        <div>
+          <p class="secao__sobretitulo" data-i18n="horario.sobretitulo">Visite-nos</p>
+          <h2 class="secao__titulo" id="horario-titulo" data-i18n="horario.titulo">Horário e localização</h2>
+          <p class="estado" data-estado hidden></p>
+
+          <table class="horario__tabela" data-horario-tabela>
+            <caption class="sr-only" data-i18n="horario.legenda">Horário de funcionamento (hora de Portugal)</caption>
+            <tbody>
+              <!-- Preenchido por horario.js a partir de data/info.json -->
+              <tr><th scope="row">Terça a quinta</th><td>12:00–15:30 · 19:00–23:00</td></tr>
+              <tr><th scope="row">Sexta e sábado</th><td>12:00–16:00 · 19:00–00:30</td></tr>
+              <tr><th scope="row">Domingo</th><td>12:00–16:00 · 19:00–22:30</td></tr>
+              <tr><th scope="row">Segunda</th><td>Fechado</td></tr>
+            </tbody>
+          </table>
+          <p class="horario__fuso" data-i18n="horario.fuso">Horas de Portugal continental (Europe/Lisbon).</p>
+        </div>
+
+        <div class="local">
+          <address class="local__morada">
+            <strong>Maré Alta</strong><br>
+            Avenida 5 de Outubro, 120<br>
+            8700-307 Olhão, Portugal<br>
+            <a href="tel:+351289000000">+351 289 000 000</a>
+          </address>
+          <p class="local__nota" data-i18n="local.nota">Em frente aos mercados de Olhão. Estacionamento público a 200 m, no Largo da Feira.</p>
+
+          <div class="local__mapa" data-mapa>
+            <button type="button" class="btn btn--escuro" data-mapa-carregar>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              <span data-i18n="local.ver_mapa">Ver no mapa</span>
+            </button>
+            <p class="local__aviso" data-i18n="local.aviso_mapa">O mapa é do OpenStreetMap e só carrega quando clicar.</p>
+          </div>
+
+          <a class="btn btn--primario local__direcoes" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.0262,-7.8412" target="_blank" rel="noopener" data-i18n="local.direcoes">Como chegar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botão de reserva fixo no telemóvel -->
+  <a class="reservar-flutuante" href="#reservas" data-reservar-flutuante data-i18n="hero.reservar">Reservar mesa</a>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__grelha">
+      <div class="footer__marca">
+        <a class="logo" href="#topo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <path d="M3 13c3.5-4 6.5-4 10 0s6.5 4 10 0 4.5-3 6-2"/>
+            <path d="M3 21c3.5-4 6.5-4 10 0s6.5 4 10 0 4.5-3 6-2"/>
+          </svg>
+          Maré Alta
+        </a>
+        <p data-i18n="footer.texto">Marisqueira em Olhão desde 1987. Marisco da Ria Formosa, peixe do dia e cataplanas.</p>
+      </div>
+
+      <div>
+        <h2 class="footer__titulo" data-i18n="footer.contactos">Contactos</h2>
+        <ul class="footer__lista">
+          <li><a href="tel:+351289000000">+351 289 000 000</a></li>
+          <li><a href="mailto:reservas@mare-alta.example">reservas@mare-alta.example</a></li>
+          <li>Av. 5 de Outubro, 120<br>8700-307 Olhão</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__titulo" data-i18n="footer.navegar">Navegar</h2>
+        <ul class="footer__lista">
+          <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+          <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+          <li><a href="#galeria" data-i18n="nav.galeria">Galeria</a></li>
+          <li><a href="#reservas" data-i18n="nav.reservas">Reservas</a></li>
+          <li><a href="#horario" data-i18n="nav.horario">Horário</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__titulo" data-i18n="nav.idioma">Idioma</h2>
+        <div class="idiomas idiomas--footer" role="group" aria-label="Idioma" data-i18n-attr="aria-label:nav.idioma">
+          <button type="button" data-lang="pt" aria-pressed="true" lang="pt-PT">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+          <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer__base">
+      <p data-i18n="footer.ficticio">Restaurante fictício, criado como projeto de portefólio. Os contactos não são reais.</p>
+      <p>© <span data-ano>2026</span> Maré Alta · <span data-i18n="footer.feito">HTML, CSS e JavaScript, sem frameworks.</span></p>
+    </div>
+  </footer>
+</body>
+</html>
