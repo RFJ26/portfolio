@@ -77,62 +77,66 @@ const skills = {
 const p = (path: string) => localizePath(lang, path);
 ---
 <BaseLayout lang={lang} title={copy.title} description={copy.description}>
-  <Container class="py-16 sm:py-24">
-    <SectionHeading as="h1" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} />
+  <Container>
+    <SectionHeading as="h1" title={copy.title} intro={copy.intro} />
+    <div class="mt-6 max-w-3xl space-y-4">
+      {copy.body.map((para) => <p>{para}</p>)}
+    </div>
 
-    <div class="mt-14 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
-      <div>
-        <div class="prose-project">
-          {copy.body.map((para) => <p>{para}</p>)}
-        </div>
+    <section class="mt-14">
+      <h2 class="text-2xl">{copy.principlesTitle}</h2>
+      <ul class="mt-6 grid gap-5 md:grid-cols-2">
+        {copy.principles.map((pr, i) => (
+          <li class="boxed lift flex gap-4 p-6">
+            <span class="text-gradient font-display text-3xl font-bold leading-none" aria-hidden="true">0{i + 1}</span>
+            <div>
+              <h3 class="text-lg capitalize">{pr.k}</h3>
+              <p class="mt-1 text-sm text-muted">{pr.v}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
 
-        <h2 class="mt-14 text-2xl font-bold">{copy.principlesTitle}</h2>
-        <ul class="mt-6 grid gap-4 sm:grid-cols-2">
-          {copy.principles.map((pr) => (
-            <li class="card p-5">
-              <p class="font-mono text-sm text-accent"><span class="text-muted" aria-hidden="true">const </span>{pr.k}<span class="text-muted" aria-hidden="true"> = true;</span></p>
-              <p class="mt-2 text-[0.95rem] text-muted">{pr.v}</p>
-            </li>
-          ))}
-        </ul>
-
-        <div class="mt-10 flex flex-wrap gap-3">
-          <Button href={p('/projetos/')}>{copy.cta} <span aria-hidden="true">→</span></Button>
-          <Button href={p('/contacto/')} variant="secondary">{copy.contact}</Button>
-        </div>
+    <section class="mt-14">
+      <div class="flex items-center gap-4">
+        <span class="boxed icon-box" aria-hidden="true">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5" /></svg>
+        </span>
+        <h2 class="text-2xl">{copy.timelineTitle}</h2>
       </div>
+      <!-- Linha temporal ao estilo do vCard: linha vertical alinhada com o ícone e pontos em gradiente -->
+      <ol class="mt-6 ml-6 border-l border-surface-3">
+        {copy.timeline.map((item) => (
+          <li class="relative pb-7 pl-9 last:pb-0">
+            <span class="bg-gradient-accent absolute top-1.5 -left-[7px] size-3.5 rounded-full ring-4 ring-surface-3" aria-hidden="true"></span>
+            <h3 class="text-base text-ink">{item.what}</h3>
+            <p class="mt-0.5 text-sm font-medium text-accent">{item.when}</p>
+            <p class="text-sm text-muted">{item.where}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-      <aside class="space-y-6">
-        <section class="card p-6">
-          <h2 class="text-xl font-bold">{copy.timelineTitle}</h2>
-          <ol class="mt-5 space-y-5 border-l border-border pl-5">
-            {copy.timeline.map((item) => (
-              <li class="relative">
-                <span class="absolute -left-[1.6rem] top-1.5 size-2.5 rounded-full border-2 border-bg bg-accent ring-1 ring-accent" aria-hidden="true"></span>
-                <p class="font-mono text-xs text-sea">{item.when}</p>
-                <p class="font-semibold">{item.what}</p>
-                <p class="text-sm text-muted">{item.where}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+    <section class="mt-14">
+      <h2 class="text-2xl">{copy.skillsTitle}</h2>
+      <dl class="boxed mt-6 space-y-5 p-6">
+        {(Object.keys(skills) as (keyof typeof skills)[]).map((g) => (
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-6">
+            <dt class="w-28 shrink-0 text-sm font-semibold capitalize text-ink">{copy.groups[g]}</dt>
+            <dd>
+              <ul class="flex flex-wrap gap-1.5">
+                {skills[g].map((s) => <li><Tag>{s}</Tag></li>)}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
 
-        <section class="card p-6">
-          <h2 class="text-xl font-bold">{copy.skillsTitle}</h2>
-          <dl class="mt-5 space-y-4">
-            {(Object.keys(skills) as (keyof typeof skills)[]).map((g) => (
-              <div>
-                <dt class="font-mono text-xs text-sea">{copy.groups[g]}</dt>
-                <dd class="mt-2">
-                  <ul class="flex flex-wrap gap-1.5">
-                    {skills[g].map((s) => <li><Tag>{s}</Tag></li>)}
-                  </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      </aside>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <Button href={p('/projetos/')}>{copy.cta} <span aria-hidden="true">→</span></Button>
+      <Button href={p('/contacto/')} variant="secondary">{copy.contact}</Button>
     </div>
   </Container>
 </BaseLayout>

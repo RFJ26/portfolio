@@ -8,7 +8,7 @@ interface Props {
 }
 const { techs, total, labels } = Astro.props;
 const btn =
-  'cursor-pointer rounded-md border px-3 py-1.5 font-mono text-sm transition-colors border-border bg-surface text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-on-accent';
+  'cursor-pointer rounded-lg bg-surface-2 px-3.5 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:text-accent aria-pressed:bg-[image:var(--g-accent)] aria-pressed:text-on-accent';
 ---
 <div data-filter data-label-count={labels.count} data-label-count-one={labels.countOne}>
   <div role="group" aria-label={labels.group} class="flex flex-wrap gap-2">

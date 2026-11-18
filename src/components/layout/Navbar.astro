@@ -1,0 +1,37 @@
+---
+import { useTranslations, type Lang } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = [
+  { href: localizePath(lang, '/'), label: t('nav.home'), exact: true },
+  { href: localizePath(lang, '/projetos/'), label: t('nav.projects') },
+  { href: localizePath(lang, '/sobre/'), label: t('nav.about') },
+  { href: localizePath(lang, '/contacto/'), label: t('nav.contact') },
+];
+const current = Astro.url.pathname;
+const isActive = (l: (typeof links)[number]) => (l.exact ? current === l.href : current.startsWith(l.href));
+---
+<!-- Telemóvel: barra fixa em baixo. Desktop: separador no canto superior direito do cartão. -->
+<nav
+  aria-label={t('nav.main')}
+  class="fixed inset-x-0 bottom-0 z-40 rounded-t-2xl border border-b-0 border-border bg-surface/80 shadow-[0_-8px_30px_-12px_rgb(0_0_0/0.5)] backdrop-blur-xl lg:absolute lg:inset-x-auto lg:top-0 lg:right-0 lg:bottom-auto lg:rounded-t-none lg:rounded-bl-[20px] lg:rounded-tr-[20px] lg:border-t-0 lg:border-r-0 lg:border-b lg:shadow-none"
+>
+  <ul class="flex items-center justify-center gap-1 px-2 sm:gap-4 lg:gap-8 lg:px-10">
+    {links.map((l) => (
+      <li>
+        <a
+          href={l.href}
+          aria-current={isActive(l) ? 'page' : undefined}
+          class:list={[
+            'block px-2 py-5 text-[0.85rem] font-medium no-underline transition-colors sm:px-3 sm:text-[0.95rem]',
+            isActive(l) ? 'text-accent' : 'text-ink-soft hover:text-muted',
+          ]}
+        >{l.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>

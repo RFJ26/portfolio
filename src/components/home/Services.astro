@@ -1,10 +1,8 @@
 ---
-import Container from '../ui/Container.astro';
-import SectionHeading from '../ui/SectionHeading.astro';
 import type { Service } from '../../data/services';
 
-interface Props { eyebrow: string; title: string; intro: string; items: Service[] }
-const { eyebrow, title, intro, items } = Astro.props;
+interface Props { title: string; items: Service[] }
+const { title, items } = Astro.props;
 
 const icons: Record<Service['icon'], string> = {
   store: 'M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6',
@@ -13,24 +11,21 @@ const icons: Record<Service['icon'], string> = {
   wrench: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z',
 };
 ---
-<section class="py-24">
-  <Container>
-    <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
-    <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((s, i) => (
-        <li class="card p-6">
-          <div class="mb-6 flex items-center justify-between">
-            <span class="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-surface-2 text-accent">
-              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d={icons[s.icon]} />
-              </svg>
-            </span>
-            <span class="font-mono text-xs text-muted" aria-hidden="true">0{i + 1}</span>
-          </div>
-          <h3 class="text-lg font-bold">{s.title}</h3>
-          <p class="mt-2 text-[0.95rem] text-muted">{s.text}</p>
-        </li>
-      ))}
-    </ul>
-  </Container>
+<section class="mt-14">
+  <h2 class="text-2xl">{title}</h2>
+  <ul class="mt-6 grid gap-5 md:grid-cols-2">
+    {items.map((s) => (
+      <li class="boxed lift flex gap-5 p-6">
+        <span class="text-accent" aria-hidden="true">
+          <svg class="size-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d={icons[s.icon]} />
+          </svg>
+        </span>
+        <div>
+          <h3 class="text-lg">{s.title}</h3>
+          <p class="mt-1.5 text-sm text-muted">{s.text}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
 </section>

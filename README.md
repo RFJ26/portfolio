@@ -53,3 +53,7 @@ Copia `.env.example` para `.env`. Na Vercel, define-as em *Settings → Environm
 ## Antes de publicar
 
 Procura `TODO` e `USERNAME` no projeto: email, links das redes sociais, URLs dos repositórios e, se quiseres, o apelido. As imagens em `src/assets/projects/` são marcadores; substitui-as por capturas reais.
+
+## Créditos
+
+Layout inspirado no template [vCard](https://github.com/codewithsadee/vcard-personal-portfolio) de codewithsadee (licença MIT), recriado em Astro + Tailwind com outra paleta de cores.

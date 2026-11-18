@@ -1,5 +1,6 @@
 ---
+// Dentro do cartão principal o espaçamento lateral vem do próprio cartão.
 interface Props { class?: string; as?: 'div' | 'section' | 'article' }
 const { class: className, as: Tag = 'div' } = Astro.props;
 ---
-<Tag class:list={['mx-auto w-full max-w-6xl px-4 sm:px-6', className]}><slot /></Tag>
+<Tag class:list={['w-full', className]}><slot /></Tag>

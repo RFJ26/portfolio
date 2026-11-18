@@ -3,60 +3,71 @@
 /* O tema é controlado pelo atributo data-theme no <html> (escuro por defeito). */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-:root {
-  --c-bg: #f6f7f9;
-  --c-surface: #ffffff;
-  --c-surface-2: #eef0f3;
-  --c-ink: #0e1116;
-  --c-muted: #555e6b;
-  --c-border: #dde1e7;
-  --c-accent: #b4532a;        /* terracota das falésias */
-  --c-accent-hover: #9a4423;
-  --c-accent-soft: #f7e7de;
-  --c-on-accent: #ffffff;
-  --c-sea: #0e7490;           /* azul-turquesa do Atlântico */
-  --c-sea-soft: #e0f2f6;
-  --c-grid: rgb(14 17 22 / 0.05);
-  --c-glow-1: rgb(180 83 42 / 0.12);
-  --c-glow-2: rgb(14 116 144 / 0.10);
-  color-scheme: light;
+/*
+ * Layout inspirado no template vCard (MIT, codewithsadee), com cores mais vivas:
+ * gradiente coral → âmbar (pôr do sol no Algarve) e turquesa do Atlântico.
+ */
+[data-theme="dark"], :root {
+  --c-bg: #121212;
+  --c-surface: #1e1e1f;
+  --c-surface-2: #2b2b2c;
+  --c-surface-3: #383838;
+  --c-ink: #f5f5f5;
+  --c-ink-soft: #d6d6d6;
+  --c-muted: #a8a8a8;
+  --c-border: #333335;
+  --c-accent: #ff7a3d;
+  --c-accent-2: #ffc145;
+  --c-accent-hover: #ff9361;
+  --c-on-accent: #121212;
+  --c-sea: #2ee6d6;
+  --c-glow: rgb(255 122 61 / 0.18);
+  --g-accent: linear-gradient(120deg, #ff5f3d 0%, #ff8f3d 45%, #ffc145 100%);
+  --g-card: linear-gradient(to bottom right, rgb(56 56 58 / 0.35) 0%, rgb(30 30 31 / 0) 100%), #1e1e1f;
+  --g-border: linear-gradient(to bottom right, #444 0%, rgb(68 68 68 / 0) 55%);
+  --shadow: 0 16px 40px -18px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
 }
 
-[data-theme="dark"] {
-  --c-bg: #0a0c10;
-  --c-surface: #11151b;
-  --c-surface-2: #171c24;
-  --c-ink: #e8eaee;
-  --c-muted: #9aa3b0;
-  --c-border: #222935;
-  --c-accent: #f08a5d;
-  --c-accent-hover: #f6a27c;
-  --c-accent-soft: #2a1a13;
-  --c-on-accent: #0a0c10;
-  --c-sea: #5fd0e0;
-  --c-sea-soft: #0f2a30;
-  --c-grid: rgb(232 234 238 / 0.045);
-  --c-glow-1: rgb(240 138 93 / 0.16);
-  --c-glow-2: rgb(95 208 224 / 0.12);
-  color-scheme: dark;
+[data-theme="light"] {
+  --c-bg: #f3f1ee;
+  --c-surface: #ffffff;
+  --c-surface-2: #f4f2ef;
+  --c-surface-3: #e8e4de;
+  --c-ink: #17171a;
+  --c-ink-soft: #2e2e33;
+  --c-muted: #5a5a63;
+  --c-border: #e4e0da;
+  --c-accent: #c2410c;
+  --c-accent-2: #d97706;
+  --c-accent-hover: #9a3412;
+  --c-on-accent: #ffffff;
+  --c-sea: #0e7490;
+  --c-glow: rgb(194 65 12 / 0.12);
+  --g-accent: linear-gradient(120deg, #c2410c 0%, #d9480f 50%, #b45309 100%);
+  --g-card: linear-gradient(to bottom right, #ffffff 0%, #faf8f5 100%);
+  --g-border: linear-gradient(to bottom right, #e4e0da 0%, rgb(228 224 218 / 0) 55%);
+  --shadow: 0 16px 40px -22px rgb(60 40 20 / 0.25);
+  color-scheme: light;
 }
 
 @theme inline {
   --color-bg: var(--c-bg);
   --color-surface: var(--c-surface);
   --color-surface-2: var(--c-surface-2);
+  --color-surface-3: var(--c-surface-3);
   --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
   --color-muted: var(--c-muted);
   --color-border: var(--c-border);
   --color-accent: var(--c-accent);
+  --color-accent-2: var(--c-accent-2);
   --color-accent-hover: var(--c-accent-hover);
-  --color-accent-soft: var(--c-accent-soft);
   --color-on-accent: var(--c-on-accent);
   --color-sea: var(--c-sea);
-  --color-sea-soft: var(--c-sea-soft);
 
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -65,19 +76,19 @@
     background-color: var(--c-bg);
     color: var(--c-ink);
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 2rem;
   }
 
   body {
-    @apply bg-bg text-ink font-sans antialiased;
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    @apply bg-bg font-sans text-ink-soft antialiased;
+    font-size: 0.97rem;
+    line-height: 1.7;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-ink;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    @apply font-display font-semibold text-ink;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
     text-wrap: balance;
   }
 
@@ -85,9 +96,9 @@
   a { @apply underline-offset-4; }
 
   :focus-visible {
-    outline: 2px solid var(--c-sea);
+    outline: 2px solid var(--c-accent-2);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
 
   ::selection {
@@ -97,66 +108,94 @@
 }
 
 @layer components {
-  /* Grelha de fundo subtil, que desvanece nas extremidades. */
-  .bg-grid {
-    background-image:
-      linear-gradient(var(--c-grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--c-grid) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+  /* Cartão base (sidebar e artigo principal). */
+  .panel {
+    @apply rounded-[20px] border border-border bg-surface;
+    box-shadow: var(--shadow);
   }
 
-  /* Brilho difuso terracota + turquesa: o pôr do sol sobre o Atlântico. */
-  .bg-glow {
-    background:
-      radial-gradient(40rem 24rem at 15% 10%, var(--c-glow-1), transparent 70%),
-      radial-gradient(36rem 22rem at 85% 30%, var(--c-glow-2), transparent 70%);
+  /* Caixa com fundo em gradiente e contorno subtil, como nos ícones do vCard. */
+  .boxed {
+    position: relative;
+    background: var(--g-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    isolation: isolate;
+  }
+  .boxed::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: var(--g-card);
+    z-index: -1;
+  }
+  .boxed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--g-border);
+    z-index: -2;
+  }
+
+  /* Usar sempre em conjunto com .boxed */
+  .icon-box {
+    @apply inline-flex size-12 shrink-0 items-center justify-center text-accent;
+    border-radius: 12px;
   }
 
   .text-gradient {
-    background: linear-gradient(100deg, var(--c-accent) 10%, var(--c-sea) 90%);
+    background: var(--g-accent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Cartão com contorno em gradiente ao passar o rato. */
-  .card {
-    @apply relative rounded-2xl border border-border bg-surface transition-[border-color,transform,box-shadow] duration-300;
+  .bg-gradient-accent { background: var(--g-accent); }
+
+  /* Título de secção com a barra de gradiente por baixo. */
+  .title-bar {
+    @apply relative pb-4 font-semibold;
   }
-  .card:hover {
-    border-color: color-mix(in oklab, var(--c-accent) 55%, var(--c-border));
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--c-accent) 20%, transparent), 0 18px 40px -24px var(--c-glow-1);
-    transform: translateY(-2px);
+  .title-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 44px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--g-accent);
   }
 
-  .eyebrow {
-    @apply font-mono text-xs font-medium tracking-[0.08em] text-sea;
+  /* Cartão de serviço/projeto que realça ao passar o rato. */
+  .lift {
+    @apply transition-[transform,box-shadow] duration-300;
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px -22px var(--c-glow), var(--shadow);
   }
 
   .prose-project {
-    @apply max-w-[68ch] text-ink;
+    @apply max-w-[68ch] text-ink-soft;
   }
-  .prose-project h2 {
-    @apply mt-10 mb-3 text-2xl font-bold;
-  }
-  .prose-project h2::before {
-    content: "## ";
-    @apply font-mono text-base font-medium text-accent;
-  }
-  .prose-project h3 { @apply mt-8 mb-2 text-xl font-semibold; }
-  .prose-project p { @apply my-4 text-ink/90; }
+  .prose-project h2 { @apply mt-10 mb-3 text-xl font-semibold text-ink; }
+  .prose-project h3 { @apply mt-8 mb-2 text-lg font-semibold; }
+  .prose-project p { @apply my-4; }
   .prose-project ul { @apply my-4 space-y-2 pl-0; }
   .prose-project ul > li { @apply relative pl-6; }
   .prose-project ul > li::before {
-    content: "→";
-    @apply absolute left-0 font-mono text-sea;
+    content: "";
+    @apply absolute left-0 top-[0.7em] size-2 rounded-full;
+    background: var(--g-accent);
   }
   .prose-project ol { @apply my-4 list-decimal pl-6 space-y-1; }
   .prose-project a { @apply text-accent underline hover:text-accent-hover; }
   .prose-project strong { @apply font-semibold text-ink; }
   .prose-project code {
-    @apply font-mono text-[0.88em] bg-surface-2 border border-border rounded px-1.5 py-0.5;
+    @apply font-mono text-[0.88em] bg-surface-2 rounded px-1.5 py-0.5;
   }
 }
 
@@ -166,5 +205,5 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .card:hover { transform: none; }
+  .lift:hover { transform: none; }
 }
